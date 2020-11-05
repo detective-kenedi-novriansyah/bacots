@@ -1,0 +1,17 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended",
+    "tslint-react",
+    "tslint-react-hooks",
+    "tslint-config-airbnb"
+  ],
+  "jsRules": {},
+  "rules": {
+    "prefer-array-literal": [true, { "allow-type-parameters": true }],
+    "import-name": [true, { "react": "React", "debug": "debugLib" }],
+    "max-line-length": [false],
+    "variable-name": [true, "allow-pascal-case"]
+  },
+  "rulesDirectory": []
+}
