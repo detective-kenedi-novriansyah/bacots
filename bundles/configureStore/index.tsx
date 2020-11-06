@@ -6,12 +6,18 @@ import { routerMiddleware, RouterState } from 'connected-react-router'
 import Stores from '../store'
 import { createBrowserHistory } from 'history'
 import { SchemaState } from '../constant/schemaTypes'
+import { UserState } from '../constant/userSchema'
+import { AuthState } from '../constant/authSchma'
+import { ContentState } from '../constant/contntSchema'
 
 export const history = createBrowserHistory();
 
 export interface ApplicationState {
     router: RouterState;
     schema: SchemaState;
+    user: UserState;
+    auth: AuthState;
+    content: ContentState
 }
 
 export default function configureStore(preloadedState?: any) {

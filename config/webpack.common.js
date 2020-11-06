@@ -6,7 +6,7 @@ var WebpackBuildNotifierPlugin = require("webpack-build-notifier");
 var nodeExternals = require('webpack-node-externals')
 
 module.exports = {
-  entry: path.join(__dirname, "../bundles/index.tsx"),
+  entry: ["@babel/polyfill",path.join(__dirname, "../bundles/index.tsx")],
   output: {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "../dist"),
