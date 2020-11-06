@@ -1,7 +1,31 @@
+import { Moment } from "moment"
+
+export interface Like {
+    id?: number;
+    info_like?: string;
+    create_at?: Moment
+    update_at?: Moment
+    author?: Authenticate
+}
+
+export interface Comment {
+    id?: number;
+    info_comment?: string;
+    comment?: string;
+    create_at?: Moment;
+    update_at?: Moment;
+    author?: Authenticate;
+}
+
 export interface Content {
+    id?: number;
     description?: string;
-    create_at?: string;
-    update_at?: string;
+    create_at?: Moment;
+    update_at?: Moment;
+    comment_count?: number;
+    like_count?: number;
+    like?: Like[];
+    comment?: Comment[];
     author?: Authenticate
 }
 
@@ -23,6 +47,8 @@ export interface Authenticate {
     city?: string;
     address?: string;
     phone_number?: string;
+    create_at?: Moment;
+    update_at?: Moment;
     user?: User
 }
 
@@ -42,6 +68,17 @@ export interface Schema {
         new_account?: string;
         forgot_button?: string;
         already_account?: string;
+        post?: string;
+        delete?: string;
+        update?: string;
+        yes?: string;
+        no?: string;
+        text_delete?: string;
+        close?: string;
+        text_update?: string;
+    }
+    bacot?: {
+        description?: string;
     }
 }
 
@@ -52,6 +89,7 @@ export interface Message {
 
 export interface LoadingButton {
     loading: boolean;
+    user?: string;
 }
 
 type CompositeUserLoading = User & LoadingButton
@@ -64,3 +102,13 @@ export type ResetUser = Pick<CompositeUserLoading, "token" | "loading">
 export type InputProps = React.ChangeEvent<HTMLInputElement>
 export type TextareaProps = React.ChangeEvent<HTMLTextAreaElement>
 export type FormProps = React.FormEvent<HTMLFormElement>
+
+interface RecordContentState {
+    description?: string
+    pk?: number;
+}
+
+type CompositeBacotLoading = RecordContentState & LoadingButton
+
+export type RecordContent = Pick<CompositeBacotLoading, "description" | "loading" | "user">
+export type RetrieveContent = Pick<CompositeBacotLoading, "description" | "loading" | "pk">

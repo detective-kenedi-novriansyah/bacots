@@ -1,0 +1,19 @@
+#container-content-bacot {
+    margin-top: 20px;
+    width: 90%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10%;
+}
+
+#content-bacot-list-author-list {
+    width: 280px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+#form-retrieve-content {
+    width: 460px;
+    
+}

@@ -14,7 +14,9 @@ const Navbar: React.FunctionComponent = () => {
         history.push(newValue)
     }
     return (
-        <nav className="py-2 bg-white shadow w-full flex items-center px-2">
+        <nav className="py-2 shadow w-full flex items-center px-2" style={{
+            backgroundColor: '#9E2D0B'
+        }}>
             {history.location.pathname !== '/' ?
             <Button type="primary" onClick={handleClickHistory.bind('','/')} style={{
                 borderRadius: '20px'

@@ -7,6 +7,8 @@ import 'rsuite/lib/styles/index.less'; // or 'rsuite/dist/styles/rsuite-default.
 import './assets/tailwindcss.css'
 import "bulma/css/bulma.css"
 import "./assets/input.css"
+import "./assets/bacot.css"
+import "flexboxgrid/dist/flexboxgrid.min.css"
 import configureStore, { history } from './configureStore'
 import Routes from './routes'
 
