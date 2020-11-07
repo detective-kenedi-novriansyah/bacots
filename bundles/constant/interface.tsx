@@ -76,6 +76,7 @@ export interface Schema {
         text_delete?: string;
         close?: string;
         text_update?: string;
+        logo?: string;
     }
     bacot?: {
         description?: string;
@@ -112,3 +113,15 @@ type CompositeBacotLoading = RecordContentState & LoadingButton
 
 export type RecordContent = Pick<CompositeBacotLoading, "description" | "loading" | "user">
 export type RetrieveContent = Pick<CompositeBacotLoading, "description" | "loading" | "pk">
+
+export interface LikesContent {
+    content?: number;
+    user?: string;
+}
+
+export interface CommentContent {
+    content?: number;
+    user?: string;
+    comment?: string;
+    loading?: boolean;
+}

@@ -78,6 +78,18 @@ export const contentReducer: Reducer<ContentState> = (state = initialState, acti
                 detail: action.payload.detail
             }
             break
+        case ContentTypes.LIKES_CONTENT:
+            return {
+                ...state,
+                content: state.content.map((x) => x.id === action.payload.id ? action.payload.content : x)
+            }
+            break
+        case ContentTypes.COMMENT_CONTENT:
+            return {
+                ...state,
+                content: state.content.map((x) => x.id === action.payload.id ? action.payload.content : x)
+            }
+            break
         default:
             return state
             break;

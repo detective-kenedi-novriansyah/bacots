@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios'
 import { Dispatch } from 'redux'
 import { ContentTypes } from '../constant/contentSchema'
-import { Content, RecordContent, RetrieveContent } from '../constant/interface'
+import { CommentContent, Content, LikesContent, RecordContent, RetrieveContent } from '../constant/interface'
 
 export const recordContent = (data: RecordContent, setData: React.Dispatch<React.SetStateAction<RecordContent>>) => {
     return async (dispatch: Dispatch) => {
@@ -218,6 +218,97 @@ export const retrieveContent = (data: RetrieveContent, setData: React.Dispatch<R
                     ...data,
                     loading: false
                 })
+                dispatch({
+                    type: ContentTypes.FAILURE_CONTENT,
+                    payload: {
+                        validate: true,
+                        message: {
+                            message: err.response.data.detail,
+                            validate: false
+                        }
+                    }
+                })
+            }
+        })
+        return response
+    }
+}
+
+export const requestLikesContent = (data: LikesContent) => {
+    return async (dispatch: Dispatch) => {
+        const response = await axios.post('api/v1/bacot/likes/content/', data, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'POST',
+                'Access-Control-Allow-Headers': 'Content-Type, Origin, Accept, X-Requested-With, Authorization',
+                'Authorization': `Token ${localStorage.getItem('token')}`
+            },
+            timeout: 865000,
+            responseType: 'json',
+            withCredentials: false,
+            maxRedirects: 5,
+            maxContentLength: 2000,
+            validateStatus: (status: number) => status >= 201 && status < 300
+        }).then((res: AxiosResponse<any>) => {
+            dispatch({
+                type: ContentTypes.LIKES_CONTENT,
+                payload: {
+                    content: res.data,
+                    id: res.data.id
+                }
+            })
+        }).catch((err: any) => {
+            if(err.response.data) {
+                dispatch({
+                    type: ContentTypes.FAILURE_CONTENT,
+                    payload: {
+                        validate: true,
+                        message: {
+                            message: err.response.data.detail,
+                            validate: false
+                        }
+                    }
+                })
+            }
+        })
+        return response
+    }
+}
+
+export const recordComment = (data: CommentContent, setData: React.Dispatch<React.SetStateAction<CommentContent>>) => {
+    return async(dispatch: Dispatch) => {
+        const response = await axios.post('api/v1/bacot/comment/content/', data, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'POST',
+                'Access-Control-Allow-Headers': 'Content-Type, Origin, Accept, X-Requested-With, Authorization',
+                'Authorization': `Token ${localStorage.getItem('token')}`
+            },
+            timeout: 865000,
+            responseType: 'json',
+            withCredentials: false,
+            maxContentLength: 2000,
+            maxRedirects: 5,
+            validateStatus: (status: number) => status >= 201 && status < 300
+        }).then((res: AxiosResponse<any>) => {
+            dispatch({
+                type: ContentTypes.COMMENT_CONTENT,
+                payload: {
+                    content: res.data,
+                    id: res.data.id
+                }
+            })
+            setData({
+                ...data,
+                comment: '',
+                loading: false
+            })
+            const comment = (document.getElementById('comment-content') as HTMLTextAreaElement)
+            comment.value = '';
+        }).catch((err: any) => {
+            if(err.response.data) {
                 dispatch({
                     type: ContentTypes.FAILURE_CONTENT,
                     payload: {

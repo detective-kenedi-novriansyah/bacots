@@ -35,19 +35,19 @@ export const DestroyContentApp = () => {
                             <DialogTitle id="alert-dialog-title">
                                 {fields.button ? fields.button.text_delete : ''}
                             </DialogTitle>
-                                <DialogContent>
+                            <DialogContent>
                                 <DialogContentText id="alert-dialog-description">
                                     {detail ? detail.description : ''}
                                 </DialogContentText>
                                 </DialogContent>
                                 <DialogActions>
-                                <Button type="dashed" onClick={handleClickDestroyContent} loading={loading}>
-                                    {fields.button ? fields.button.yes : ''}
+                                <Button type="dashed" size="small" shape="round" onClick={handleClickDestroyContent} loading={loading}>
+                                    {fields.button ? fields.button.delete : ''}
                                 </Button>
-                                <Button type="dashed" onClick={handleClickClose}>
-                                    {fields.button ? fields.button.no : ''}
+                                <Button type="dashed" size="small" shape="round" onClick={handleClickClose}>
+                                    {fields.button ? fields.button.close : ''}
                                 </Button>
-                                </DialogActions>
+                            </DialogActions>
                     </Dialog>
                 )
             }

@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&family=Roboto+Mono&display=swap');
+
+
 #container-content-bacot {
     margin-top: 20px;
     width: 90%;
@@ -15,5 +19,65 @@
 
 #form-retrieve-content {
     width: 460px;
-    
+
 }
+
+#nickname {
+    color: black !important;
+    font-weight: 500;
+}
+
+#nickname:hover {
+    color: black;
+}
+
+#custom-card {
+    box-shadow: 0px 10px 1px #ddd, 0 10px 20px #ccc;
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    border-radius: 24px;
+}
+
+#dkqwmkdqdmwqkdmwqk {
+    font-weight: 400;
+    word-wrap: break-word;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 15px;
+}
+
+#dkqwmkdqdmwqkdmwqkdwqdqwdqwd {
+    font-weight: 400;
+    word-wrap: break-word;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 15px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 420px;
+}
+
+#vector-likes {
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 120px;
+}
+
+#dkwqmkdmqkdmwqkmdqwdqw {
+    font-size: 13px;
+    word-wrap: break-word;
+}
+
+#dmqwijdiwqdjiqwdodlwqdqw {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 200px;
+}
+
+#btn-btn {
+    outline: none !important;
+    border: none !important;
+}
+
+

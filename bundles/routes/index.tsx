@@ -73,9 +73,13 @@ const Routes = () => {
                         handleClickClose
                     }}>
                         <ValidateContextApp/>
-                        <Navbar/>
+                        <div className="relative">
+                            <Navbar/>
+                        </div>
                         <Switch>
-                            <Route path="/" exact={true} component={Home}/>
+                            <Route path="/" exact={true}>
+                                <Home/>
+                            </Route>
                             <Route path="/signin" render={({location}) => localStorage.getItem('token') ? (
                                 <Redirect to={{ pathname: '/', state: { from: location } }}/>
                             ) : (

@@ -1,6 +1,8 @@
 import { Content, Message } from './interface'
 
 export enum ContentTypes {
+    COMMENT_CONTENT = "COMMENT_CONTENT",
+    LIKES_CONTENT = "LIKES_CONTENT",
     RETRIEVE_CONTENT = "RETRIEVE_CONTENT",
     RETRIEVE_CONTENT_DIALOG = "RETRIEVE_CONTENT_DIALOG",
     RECORD_CONTENT = "RECORD_CONTENT",

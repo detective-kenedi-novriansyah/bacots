@@ -1,5 +1,4 @@
 import React from 'react'
-import style from 'styled-components'
 import { Button } from 'antd'
 import { useSelector } from 'react-redux'
 import { ApplicationState } from '../../configureStore'
@@ -14,28 +13,29 @@ const Navbar: React.FunctionComponent = () => {
         history.push(newValue)
     }
     return (
-        <nav className="py-2 shadow w-full flex items-center px-2" style={{
-            backgroundColor: '#9E2D0B'
-        }}>
-            {history.location.pathname !== '/' ?
-            <Button type="primary" onClick={handleClickHistory.bind('','/')} style={{
-                borderRadius: '20px'
-            }}>
-                Back to bacot
-            </Button> : null }
+        <nav className="flex items-center py-4 px-2 shadow bg-white">
+            <img src={fields.button ? fields.button.logo : ''} alt="" className="w-32 h-6"/>
             <div className="flex-1"></div>
             {localStorage.getItem('token') ? (
-                <Avatar src={is_authenticate.avatar} className="cursor-pointer"/>
-            ) : (
-                <div className="flex items-center">
-                    <Button type="dashed" className="mx-2" onClick={handleClickHistory.bind('', '/signin')}>
-                        {fields.button ? fields.button.signin : ''}
-                    </Button>
-                    <Button type="dashed" onClick={handleClickHistory.bind('','/signup')}>
-                        {fields.button ? fields.button.create_new_account : ''}
-                    </Button>
-                </div>
-            )}
+                <button className="bg-white shadow rounded-full full py-1 px-2 w-32 flex items-center justify-center" style={{
+                    outline: 'none',
+                    border: 'none'
+                }}>
+                    <Avatar src={is_authenticate.avatar} size="small"/>
+                    <a id="nickname">
+                        Profile
+                    </a>
+                    <i className="fas fa-caret-down ml-1"></i>
+                </button>
+            ) : 
+            <div className="flex items-center">
+                <Button type="dashed" size="small" shape="round" onClick={handleClickHistory.bind('','/signin')}>
+                    {fields.button ? fields.button.signin : ''}
+                </Button>
+                <Button type="dashed" size="small" shape="round" className="ml-2" onClick={handleClickHistory.bind('','/signup')}>
+                    {fields.button ? fields.button.create_new_account : ''}
+                </Button>
+            </div>}
         </nav>
     )
 }
