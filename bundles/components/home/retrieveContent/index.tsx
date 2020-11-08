@@ -47,13 +47,15 @@ export const RetrieveContentContextApp = () => {
                 return (
                 <Dialog open={open} onClose={handleClickClose} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">
-                        {fields.button ? fields.button.text_update : ''}
+                        <div id="knd-title-options-dialog">
+                            {fields.button ? fields.button.text_update : ''}
+                        </div>
                     </DialogTitle>
                     <DialogContent>
-                        <form onSubmit={onSubmit} id="form-retrieve-content">
+                        <form onSubmit={onSubmit}>
                             <div className="field">
                                 <div className="control is-expanded">
-                                    <Input.TextArea placeholder={fields.bacot ? fields.bacot.description : ''} defaultValue={detail.description} id="retrieve-description" required/>
+                                    <Input.TextArea placeholder={fields.bacot ? fields.bacot.description : ''} defaultValue={detail.description} id="retrieve-description" required className="knd-dialog-form-retrieve-context"/>
                                 </div>
                             </div>
                             <div className="field has-addons flex items-center">

@@ -13,7 +13,7 @@ const Navbar: React.FunctionComponent = () => {
         history.push(newValue)
     }
     return (
-        <nav className="flex items-center py-4 px-2 shadow bg-white">
+        <nav className="flex items-center py-4 px-2 shadow bg-white w-full">
             <img src={fields.button ? fields.button.logo : ''} alt="" className="w-32 h-6"/>
             <div className="flex-1"></div>
             {localStorage.getItem('token') ? (

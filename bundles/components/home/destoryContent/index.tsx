@@ -33,11 +33,17 @@ export const DestroyContentApp = () => {
                     <Dialog open={open} onClose={handleClickClose} aria-labelledby="alert-dialog-title"
                         aria-describedby="alert-dialog-description">
                             <DialogTitle id="alert-dialog-title">
-                                {fields.button ? fields.button.text_delete : ''}
+                                <div id="knd-title-options-dialog">
+                                    {fields.button ? fields.button.text_delete : ''}
+                                </div>
                             </DialogTitle>
                             <DialogContent>
                                 <DialogContentText id="alert-dialog-description">
-                                    {detail ? detail.description : ''}
+                                    <div className="w-full">
+                                        <div id="knd-text-delete">
+                                            {detail ? detail.description : ''}
+                                        </div>
+                                    </div>
                                 </DialogContentText>
                                 </DialogContent>
                                 <DialogActions>
