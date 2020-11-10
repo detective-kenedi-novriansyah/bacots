@@ -25,7 +25,7 @@ export const ValidateContextApp: React.FunctionComponent = () => {
                     if(validateUser) {
                         return (
                             <Snackbar open={validateUser} onClose={handleClickClose}>
-                                <Alert onClose={handleClickClose} severity={user.message.validate ? "success" : "error"}>
+                                <Alert onClose={handleClickClose} severity={user.message.validate ? "success" : "error"} className="knd-validate">
                                     {user.message.message}
                                 </Alert>
                             </Snackbar>
@@ -33,7 +33,7 @@ export const ValidateContextApp: React.FunctionComponent = () => {
                     } else if(validateAuth){
                         return (
                             <Snackbar open={validateAuth} onClose={handleClickClose}>
-                                <Alert onClose={handleClickClose} severity={auth.message.validate ? "success" : "error"}>
+                                <Alert onClose={handleClickClose} severity={auth.message.validate ? "success" : "error"} className="knd-validate">
                                     {auth.message.message}
                                 </Alert>
                             </Snackbar>
@@ -41,7 +41,7 @@ export const ValidateContextApp: React.FunctionComponent = () => {
                     } else if(validateContent) {
                         return (
                             <Snackbar open={validateContent} onClose={handleClickClose}>
-                            <Alert onClose={handleClickClose} severity={content.message.validate ? "success" : "error"}>
+                            <Alert onClose={handleClickClose} severity={content.message.validate ? "success" : "error"} className="knd-validate">
                                 {content.message.message}
                             </Alert>
                         </Snackbar>

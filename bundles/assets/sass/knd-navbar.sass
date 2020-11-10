@@ -1,0 +1,362 @@
+$base-color: #7d686b
+$base-color-placeholder: #7d686b91
+$base-color-red: #f20c0c
+$box-shadow-btn: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149)
+$box-shadow-card: 0px 10px 1px #ddd, 0 10px 20px #ccc
+$font-text: "Segoe UI", Meiryo, system-ui, -apple-system, BlinkMacSystemFont, sans-serif
+
+
+header
+    .knd-navbar
+        display: flex
+        align-items: center
+        flex-direction: row
+        padding-top: 0.85rem
+        padding-bottom: 0.85rem
+        padding-left: 0.15rem
+        padding-right: 0.15rem
+        box-shadow: $box-shadow-btn
+        border-bottom-left-radius: 24px
+        border-bottom-right-radius: 24px
+        margin-bottom: 0.50rem
+        font-weight: 700
+        font-family: $font-text
+        border-bottom: 4px solid $base-color
+
+        .knd-navbar-group 
+            display: flex
+            align-items: center
+            flex-direction: row
+
+            button
+                padding-left: 0.75rem
+                padding-right: 0.75rem
+                padding-top: 0.35rem
+                padding-bottom: 0.35rem
+                border-radius: 24px
+                box-shadow: $box-shadow-btn
+                border-top: 2px solid $base-color
+                border-bottom: 2px solid $base-color
+                outline: none
+                color: $base-color
+
+                &:last-child
+                    margin-left: 0.50rem
+                    margin-right: 0.50rem
+    .knd-navbar-bottom
+        display: none         
+
+@media screen and ( min-width:  930px )
+    header
+        .knd-navbar
+            .knd-navbar-filter
+                box-shadow: $box-shadow-btn
+                border-radius: 24px
+                display: flex
+                align-items: center
+                flex-direction: row
+                border-top: 2px solid $base-color
+                border-bottom: 2px solid $base-color
+
+                input[type="text"]
+                    outline: none
+                    height: 2.25rem
+                    color: $base-color
+                    padding-left: 0.50rem
+                    padding-right: 0.25rem
+
+                \::-webkit-input-placeholder
+                    color: $base-color-placeholder
+
+                \:-ms-input-placeholder
+                    color: $base-color-placeholder
+
+                \::placeholder
+                    color: $base-color-placeholder
+                
+                button
+                    height: 2.10rem
+                    width: 2.10rem
+                    border-radius: 80%
+                    box-shadow: $box-shadow-btn
+                    color: $base-color
+                    font-weight: bold
+                    outline: none
+
+            .knd-navbar-group-is
+                display: flex
+                align-items: center
+                flex-direction: row
+
+                img
+                    width: 40px
+                    box-shadow: $box-shadow-btn
+                    height: 40px
+                    border-radius: 80%
+                    cursor: pointer
+                    padding: 0.25rem
+                    background-size: contain
+                    background-position: center
+                    background-repeat: no-repeat
+                    margin-left: 0.50rem
+                    margin-right: 0.50rem
+                
+                button
+
+                    padding-top: 0.75rem
+                    padding-bottom: 0.75rem
+                    padding-left: 1.25rem
+                    padding-right: 1.25rem
+                    box-shadow: $box-shadow-btn
+                    border-radius: 24px
+                    border-left: 2px solid $base-color
+                    border-right: 2px solid $base-color
+                    margin-left: 0.75rem
+                    margin-right: 0.75rem
+                    outline: none
+                    display: flex
+                    align-items: center
+                    justify-content: center
+
+                    .fa-bell
+                        color: orange
+                    
+                    .fa-comments
+                        color: skyblue
+
+                    .fa-globe-asia
+                        color: green
+
+@media screen and ( max-width: 929px ) and ( min-width: 768px )
+    header
+        .knd-navbar
+            .knd-navbar-filter
+                box-shadow: $box-shadow-btn
+                border-radius: 24px
+                display: flex
+                align-items: center
+                flex-direction: row
+                border-top: 2px solid $base-color
+                border-bottom: 2px solid $base-color
+
+                input[type="text"]
+                    height: 2.05rem
+                    outline: none
+                    color: $base-color
+                    padding-left: 0.50rem
+                    padding-right: 0.25rem
+                    width: 200px
+
+                \::-webkit-input-placeholder
+                    color: $base-color-placeholder
+
+                \:-ms-input-placeholder
+                    color: $base-color-placeholder
+
+                \::placeholder
+                    color: $base-color-placeholder
+
+                button
+                    height: 2.35rem
+                    width: 2.35rem
+                    border-radius: 80%
+                    box-shadow: $box-shadow-btn
+                    color: $base-color
+                    font-weight: bold
+                    outline: none
+
+            .knd-navbar-group-is
+                display: flex
+                align-items: center
+                flex-direction: row
+
+                button
+                    padding-left: 0.75rem
+                    padding-right: 0.75rem
+                    padding-top: 0.35rem
+                    padding-bottom: 0.35rem
+                    border-radius: 24px
+                    box-shadow: $box-shadow-btn
+                    margin-left: 0.25rem
+                    margin-right: 0.25rem
+                    display: flex
+                    align-items: center
+                    justify-content: center
+                    border-left: 2px solid $base-color
+                    border-right: 2px solid $base-color
+
+                    .fa-bell
+                        color: orange
+                
+                    .fa-comments
+                        color: skyblue
+
+                    .fa-globe-asia
+                        color: green
+
+                img
+                    width: 45px
+                    height: 45px
+                    box-shadow: $box-shadow-btn
+                    padding: 0.50rem
+                    border-radius: 80%
+                    background-size: contain
+                    background-position: center
+                    background-repeat: no-repeat
+                    margin-left: 0.75rem
+                    margin-right: 0.35rem
+
+@media screen and ( max-width: 767px )
+    header
+        .knd-navbar
+            img
+                height: 40px
+                width: 120px
+                background-size: contain
+                background-position: center
+                background-repeat: no-repeat
+            .knd-navbar-filter
+                display: none
+            .knd-navbar-group-is
+                display: flex
+                align-items: center
+                flex-direction: row
+                button
+                    display: none
+
+                    &:first-child
+                        display: block
+                        position: absolute
+                        left: 41%
+                        right: 50%
+                        width: 80px
+                        height: 40px
+                        border-radius: 24px
+                        box-shadow: $box-shadow-btn
+                        
+                img
+                    width: 45px
+                    height: 45px
+                    box-shadow: $box-shadow-btn
+                    padding: 0.50rem
+                    border-radius: 80%
+                    background-size: contain
+                    background-position: center
+                    background-repeat: no-repeat
+                    margin-left: 0.75rem
+                    margin-right: 0.35rem
+            .knd-navbar-group  
+                button
+                    padding-left: 0.50rem
+                    padding-right: 0.50rem
+                    padding-top: 0.25rem
+                    padding-bottom: 0.25rem
+                    border-radius: 24px
+                    color: $base-color
+                    box-shadow: $box-shadow-btn
+                    border-bottom: 2px solid $base-color
+                    border-top: 2px solid $base-color
+                    outline: none
+                    font-size: 15px
+                    font-weight: 700
+
+            .knd-navbar-bottom
+                display: flex
+                align-items: center
+                flex-direction: row
+                position: fixed
+                bottom: 0
+                height: 60px
+                box-shadow: $box-shadow-btn
+                border-top-left-radius: 12px
+                border-top-right-radius: 12px
+                width: 100%
+                background-color: #ffffff
+                z-index: 2
+                justify-content: center
+
+                button
+                    width: 60px
+                    height: 30px
+                    border-radius: 24px
+                    box-shadow: $box-shadow-btn
+                    margin-left: 0.50rem
+                    margin-right: 0.50rem
+
+@media screen and ( max-width: 360px )
+    header
+        .knd-navbar
+            img
+                height: 40px
+                width: 120px
+                background-size: contain
+                background-position: center
+                background-repeat: no-repeat
+            .knd-navbar-filter
+                display: none
+            .knd-navbar-group-is
+                display: flex
+                align-items: center
+                flex-direction: row
+                button
+                    display: none
+
+                    &:first-child
+                        display: block
+                        position: absolute
+                        left: 39%
+                        right: 50%
+                        width: 80px
+                        height: 40px
+                        border-radius: 24px
+                        box-shadow: $box-shadow-btn
+                        
+                img
+                    width: 45px
+                    height: 45px
+                    box-shadow: $box-shadow-btn
+                    padding: 0.50rem
+                    border-radius: 80%
+                    background-size: contain
+                    background-position: center
+                    background-repeat: no-repeat
+                    margin-left: 0.75rem
+                    margin-right: 0.35rem
+            .knd-navbar-group  
+                button
+                    padding-left: 0.50rem
+                    padding-right: 0.50rem
+                    padding-top: 0.25rem
+                    padding-bottom: 0.25rem
+                    border-radius: 24px
+                    color: $base-color
+                    box-shadow: $box-shadow-btn
+                    border-bottom: 2px solid $base-color
+                    border-top: 2px solid $base-color
+                    outline: none
+                    font-size: 15px
+                    font-weight: 700
+
+@media screen and ( max-width: 369px )
+    header
+        .knd-navbar
+            img
+                height: 30px
+                width: 90px
+                background-size: contain
+                background-position: center
+                background-repeat: no-repeat
+            .knd-navbar-group  
+                button
+                    padding-left: 0.25rem
+                    padding-right: 0.25rem
+                    padding-top: 0.12.5rem
+                    padding-bottom: 0.12.5rem
+                    border-radius: 24px
+                    color: $base-color
+                    box-shadow: $box-shadow-btn
+                    border-bottom: 2px solid $base-color
+                    border-top: 2px solid $base-color
+                    outline: none
+                    font-size: 13px
+                    font-weight: 700

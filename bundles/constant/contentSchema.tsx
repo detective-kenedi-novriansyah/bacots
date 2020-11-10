@@ -1,6 +1,9 @@
 import { Content, Message } from './interface'
 
 export enum ContentTypes {
+    MOVE_DETAIL_CONTENT = "MOVE_DETAIL_CONTENT",
+    DESTROY_DETAIL_COMMENT = "DESTROY_DETAIL_COMMENT",
+    DESTROY_COMMENT = "DESTROY_COMMENT",
     COMMENT_CONTENT = "COMMENT_CONTENT",
     LIKES_CONTENT = "LIKES_CONTENT",
     RETRIEVE_CONTENT = "RETRIEVE_CONTENT",
@@ -20,6 +23,8 @@ export interface ContentState {
     readonly detail: Content;
     readonly openDialog: boolean;
     readonly validate: boolean;
+    readonly softDetail: boolean
+    readonly loadingScreen: boolean;
     readonly openRetrieveDialog: boolean;
     readonly message: Message
 }

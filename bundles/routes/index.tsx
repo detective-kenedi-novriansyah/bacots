@@ -6,9 +6,11 @@ import { fetchContent } from '../actions/contentActions'
 import { fetchSchema } from '../actions/schemaActions'
 import ForgotScreen from '../components/auth/ForgotScreen'
 import LoginScreen from '../components/auth/LoginScreen'
+import KndProfile from '../components/auth/profile/knd-profile'
 import RegisterScreen from '../components/auth/RegisterScreen'
 import Home from '../components/home'
 import { DestroyContent, DestroyContentApp } from '../components/home/destoryContent'
+import KndDetail from '../components/home/detail'
 import { RetrieveContentContext, RetrieveContentContextApp } from '../components/home/retrieveContent'
 import Navbar from '../components/navbar'
 import { ValidateContext, ValidateContextApp } from '../components/validate'
@@ -48,7 +50,6 @@ const Routes = () => {
             if(localStorage.getItem('token')) {
                 dispatch(isAuthenticate())
             }
-            dispatch(fetchContent())
         }
     },[])
     
@@ -94,6 +95,14 @@ const Routes = () => {
                                 <Redirect to={{ pathname: '/', state: { from: location } }}/>
                             ) : (
                                 <ForgotScreen/>
+                            )}/>
+                            <Route path="/detail" render={({location}) => localStorage.getItem('token') ? (
+                                <KndDetail/>
+                            ) : (<Redirect to={{pathname: '/', state: {from: location} }}/>
+                            )}/>
+                            <Route path="/profile" render={({location}) => localStorage.getItem('token') ? (
+                                <KndProfile/>
+                            ) : (<Redirect to={{pathname: '/', state: {from: location} }}/>
                             )}/>
                         </Switch>
                     </ValidateContext.Provider>

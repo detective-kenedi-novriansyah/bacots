@@ -4,9 +4,11 @@ import { ContentState, ContentTypes } from '../constant/contentSchema'
 const initialState: ContentState = {
     content: [],
     detail: {},
+    softDetail: false,
     validate: false,
     message: {},
     openDialog: false,
+    loadingScreen: true,
     openRetrieveDialog: false
 }
 
@@ -22,7 +24,8 @@ export const contentReducer: Reducer<ContentState> = (state = initialState, acti
             return {
                 ...state,
                 detail: action.payload.detail,
-                openDialog: action.payload.openDialog
+                openDialog: action.payload.openDialog,
+                softDetail: action.payload.softDetail
             }
             break
         case ContentTypes.DESTROY_CONTENT:
@@ -75,7 +78,8 @@ export const contentReducer: Reducer<ContentState> = (state = initialState, acti
             return {
                 ...state,
                 openRetrieveDialog: action.payload.openRetrieveDialog,
-                detail: action.payload.detail
+                detail: action.payload.detail,
+                softDetail: action.payload.softDetail
             }
             break
         case ContentTypes.LIKES_CONTENT:
@@ -88,6 +92,32 @@ export const contentReducer: Reducer<ContentState> = (state = initialState, acti
             return {
                 ...state,
                 content: state.content.map((x) => x.id === action.payload.id ? action.payload.content : x)
+            }
+            break
+        case ContentTypes.MOVE_DETAIL_CONTENT:
+            return {
+                ...state,
+                detail: action.payload.detail,
+                loadingScreen: action.payload.loadingScreen
+            }
+            break
+        case ContentTypes.DETAIL_CONTENT:
+            return {
+                ...state,
+                detail: action.payload.detail,
+                loadingScreen: action.payload.loadingScreen
+            }
+            break
+        case ContentTypes.DESTROY_COMMENT:
+            return {
+                ...state,
+                content: state.content.map((x) => x.id === action.payload.id ? action.payload.content : x)
+            }
+            break
+        case ContentTypes.DESTROY_DETAIL_COMMENT:
+            return {
+                ...state,
+                detail: action.payload.detail,
             }
             break
         default:

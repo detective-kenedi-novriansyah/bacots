@@ -1,7 +1,9 @@
 import axios, { AxiosResponse } from 'axios'
+import { History } from 'history'
 import { Dispatch } from 'redux'
+import { AuthTypes } from '../constant/authSchma'
 import { ContentTypes } from '../constant/contentSchema'
-import { CommentContent, Content, LikesContent, RecordContent, RetrieveContent } from '../constant/interface'
+import { CommentContent, Content, DestroyCommentDetail, LikesContent, RecordContent, RetrieveContent, Schema } from '../constant/interface'
 
 export const recordContent = (data: RecordContent, setData: React.Dispatch<React.SetStateAction<RecordContent>>) => {
     return async (dispatch: Dispatch) => {
@@ -31,6 +33,8 @@ export const recordContent = (data: RecordContent, setData: React.Dispatch<React
                 loading: false,
                 description: ''
             })
+            const description = (document.getElementById('knd-home-form-bacot') as HTMLTextAreaElement)
+            description.value = '';
         }).catch((err: any) => {
             if(err.response.data) {
                 setData({
@@ -99,19 +103,33 @@ export const contentOpenDialogDestroy = (pk: number, content: Content[]) => {
         const check_content = content.filter(function(x) {
             return x.id === pk
         })
-        console.log(check_content)
         const response = await dispatch({
             type: ContentTypes.DETAIL_CONTENT_DIALOG,
             payload: {
                 openDialog: true,
-                detail: check_content[0]
+                detail: check_content[0],
+                softDetail: false
             }
         })
         return response
     }
 }
 
-export const destroyContent = (pk: number, setLoading: React.Dispatch<React.SetStateAction<boolean>>) => {
+export const contentDetailOpenDialogDestroy = (content: Content) => {
+    return async(dispatch: Dispatch) => {
+        const response = await dispatch({
+            type: ContentTypes.DETAIL_CONTENT_DIALOG,
+            payload: {
+                detail: content,
+                openDialog: true,
+                softDetail: true
+            }
+        })
+        return response
+    }
+}
+
+export const destroyContent = (pk: number, setLoading: React.Dispatch<React.SetStateAction<boolean>>, changeRouter: boolean, history: History,is_authenticate: boolean) => {
     return async (dispatch: Dispatch) => {
         const response = await axios.delete(`api/v1/bacot/${pk}/`, {
             headers: {
@@ -129,6 +147,15 @@ export const destroyContent = (pk: number, setLoading: React.Dispatch<React.SetS
             validateStatus: (status: number) => status >= 200 && status < 300
         }).then((res: AxiosResponse<any>) => {
             setLoading(false)
+            if(is_authenticate) {
+                dispatch({
+                    type: AuthTypes.DESTROY_CONTENT,
+                    payload: {
+                        id: pk
+                    }
+                })
+            }
+            
             dispatch({
                 type: ContentTypes.DESTROY_CONTENT,
                 payload: {
@@ -141,6 +168,9 @@ export const destroyContent = (pk: number, setLoading: React.Dispatch<React.SetS
                     openDialog: false
                 }
             })
+            if(changeRouter) {
+                history.push('/')
+            }
         }).catch((err: any) => {
             if(err.response.data) {
                 setLoading(false)
@@ -169,14 +199,29 @@ export const contentOpenDialogRetrieve = (pk: number, content: Content[]) => {
             type: ContentTypes.RETRIEVE_CONTENT_DIALOG,
             payload: {
                 openRetrieveDialog: true,
-                detail: contents[0]
+                detail: contents[0],
+                softDetail: false,
             }
         })
         return response
     }
 }
 
-export const retrieveContent = (data: RetrieveContent, setData: React.Dispatch<React.SetStateAction<RetrieveContent>>) => {
+export const contentDetailOpenDialogRetrieve = (content: Content) => {
+    return async (dispatch: Dispatch) => {
+        const response = await dispatch({
+            type: ContentTypes.RETRIEVE_CONTENT_DIALOG,
+            payload: {
+                detail: content,
+                openRetrieveDialog: true,
+                softDetail: true
+            }
+        })
+        return response
+    }
+}
+
+export const retrieveContent = (data: RetrieveContent, setData: React.Dispatch<React.SetStateAction<RetrieveContent>>,softActive: boolean, is_authenticate: boolean) => {
     return async (dispatch: Dispatch) => {
         const response = await axios.put(`api/v1/bacot/${data.pk}/`, data, {
             headers: {
@@ -193,6 +238,24 @@ export const retrieveContent = (data: RetrieveContent, setData: React.Dispatch<R
             maxRedirects: 5,
             validateStatus: (status: number) => status >= 200 && status < 300
         }).then((res: AxiosResponse<any>) => {
+            if(is_authenticate) {
+                dispatch({
+                    type: AuthTypes.RETRIEVE_CONTENT,
+                    payload: {
+                        content: res.data.content,
+                        id: res.data.content.id
+                    }
+                })
+            }
+            if(softActive) {
+                dispatch({
+                    type: ContentTypes.DETAIL_CONTENT,
+                    payload: {
+                        detail: res.data.content
+                    }
+                })
+            }
+
             dispatch({
                 type: ContentTypes.RETRIEVE_CONTENT,
                 payload: {
@@ -234,7 +297,7 @@ export const retrieveContent = (data: RetrieveContent, setData: React.Dispatch<R
     }
 }
 
-export const requestLikesContent = (data: LikesContent) => {
+export const requestLikesContent = (data: LikesContent,is_authenticate: boolean) => {
     return async (dispatch: Dispatch) => {
         const response = await axios.post('api/v1/bacot/likes/content/', data, {
             headers: {
@@ -258,6 +321,23 @@ export const requestLikesContent = (data: LikesContent) => {
                     id: res.data.id
                 }
             })
+            if(is_authenticate) {
+                dispatch({
+                    type: AuthTypes.RECORD_CONTENT,
+                    payload: {
+                        content: res.data,
+                        id: res.data.id
+                    }
+                })
+            }
+            if(data.detail) {
+                dispatch({
+                    type: ContentTypes.DETAIL_CONTENT,
+                    payload: {
+                        detail: res.data
+                    }
+                })
+            }
         }).catch((err: any) => {
             if(err.response.data) {
                 dispatch({
@@ -276,7 +356,7 @@ export const requestLikesContent = (data: LikesContent) => {
     }
 }
 
-export const recordComment = (data: CommentContent, setData: React.Dispatch<React.SetStateAction<CommentContent>>) => {
+export const recordComment = (data: CommentContent, setData: React.Dispatch<React.SetStateAction<CommentContent>>, findIndex: number, is_authenticate: boolean) => {
     return async(dispatch: Dispatch) => {
         const response = await axios.post('api/v1/bacot/comment/content/', data, {
             headers: {
@@ -300,13 +380,170 @@ export const recordComment = (data: CommentContent, setData: React.Dispatch<Reac
                     id: res.data.id
                 }
             })
+            if(data.detail) {
+                dispatch({
+                    type: ContentTypes.DETAIL_CONTENT,
+                    payload: {
+                        detail: res.data
+                    }
+                })
+            }
+            if(is_authenticate) {
+                dispatch({
+                    type: AuthTypes.RECORD_CONTENT,
+                    payload: {
+                        content: res.data,
+                        id: res.data.id
+                    }
+                })
+            }
+            const comments = (document.getElementById(`knd-comments-${findIndex}`) as HTMLTextAreaElement)
+            comments.value = '';
             setData({
                 ...data,
                 comment: '',
-                loading: false
+                loading: 0,
+                detail: false
             })
-            const comment = (document.getElementById('comment-content') as HTMLTextAreaElement)
-            comment.value = '';
+        }).catch((err: any) => {
+            if(err.response.data) {
+                dispatch({
+                    type: ContentTypes.FAILURE_CONTENT,
+                    payload: {
+                        validate: true,
+                        message: {
+                            message: err.response.data.detail,
+                            validate: false
+                        }
+                    }
+                })
+            }
+        })
+        return response
+    }
+}
+
+export const detailContent = (pk: number, content: Content[], history: History, validate: Schema) => {
+    return async (dispatch: Dispatch) => {
+        const check_content = content.filter(function(x) {
+            return x.id === pk
+        })
+        if(check_content[0]) {
+            const response = await dispatch({
+                type: ContentTypes.MOVE_DETAIL_CONTENT,
+                payload: {
+                    detail: check_content[0],
+                    loadingScreen: false
+                }
+            })
+            history.push({
+                pathname: '/detail',
+                search: `${pk}`
+            })
+            return response
+        } else {
+            const response_failure = await dispatch({
+                type: ContentTypes.FAILURE_CONTENT,
+                payload: {
+                    validate: true,
+                    message: {
+                        message: validate.validate.validate_not_found,
+                        validate: false
+                    }
+                }
+            })
+            return response_failure
+        }
+    }
+}
+
+export const fetchDetailContent = (pk: number) => {
+    return async (dispatch: Dispatch) => {
+        const response = await axios.get(`api/v1/bacot/${pk}/`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET',
+                'Access-Control-Allow-Headers': 'Content-Type, Origin, Accept, X-Requested-With, Authorization',
+                'Authorization': `Token ${localStorage.getItem('token')}`
+            },
+            timeout: 865000,
+            responseType: 'json',
+            withCredentials: false,
+            maxContentLength: 2000,
+            maxRedirects: 5,
+            validateStatus: (status: number) => status >= 200 && status < 300
+        }).then((res: AxiosResponse<any>) => {
+            dispatch({
+                type: ContentTypes.DETAIL_CONTENT,
+                payload: {
+                    detail: res.data,
+                    loadingScreen : false
+                }
+            })
+        }).catch((err: any) => {
+            if(err.response.data) {
+                dispatch({
+                    type: ContentTypes.FAILURE_CONTENT,
+                    payload: {
+                        validate: true,
+                        message: {
+                            message: err.response.data.detail,
+                            validate: false
+                        }
+                    }
+                })
+            }
+        })
+        return response
+    }
+}
+
+export const destroyComment = (pk: number,comments: DestroyCommentDetail, setComments: React.Dispatch<React.SetStateAction<DestroyCommentDetail>>) => {
+    return async (dispatch: Dispatch) => {
+        const response = await axios.delete(`api/v1/bacot/comment/content/${pk}/`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Methods': 'DELETE',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Origin, Accepted, Authorization, X-Requested-With',
+                'Authorization': `Token ${localStorage.getItem('token')}`
+            },
+            timeout: 865000,
+            responseType: 'json',
+            withCredentials: false,
+            maxContentLength: 2000,
+            maxRedirects: 5,
+            validateStatus: (status: number) => status >= 200 && status < 300
+        }).then((res: AxiosResponse<any>) => {
+            if(comments.detail) {
+                dispatch({
+                    type: ContentTypes.DESTROY_COMMENT,
+                    payload: {
+                        content: res.data.content,
+                        id: res.data.content.id
+                    }
+                })
+                dispatch({
+                    type: ContentTypes.DESTROY_DETAIL_COMMENT,
+                    payload: {
+                        detail: res.data.content
+                    }
+                })
+            } else {
+                dispatch({
+                    type: ContentTypes.DESTROY_COMMENT,
+                    payload: {
+                        content: res.data.content,
+                        id: res.data.content.id
+                    }
+                })
+            }
+            setComments({
+                ...comments,
+                loading: 0,
+                detail: false
+            })
         }).catch((err: any) => {
             if(err.response.data) {
                 dispatch({

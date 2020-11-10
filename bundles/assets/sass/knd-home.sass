@@ -1,0 +1,581 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap')
+
+// body => Roboto, Arial, sans-serif;
+// body => .875rem
+// body => #666
+
+
+// box-shadow-card: box-shadow: 0px 10px 1px #ddd, 0 10px 20px #ccc;       
+// box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149);
+
+$base-color: #7d686b
+$base-color-red: #f20c0c
+$box-shadow-btn: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149)
+$box-shadow-card: 0px 10px 1px #ddd, 0 10px 20px #ccc
+$font-text: "Segoe UI", Meiryo, system-ui, -apple-system, BlinkMacSystemFont, sans-serif
+
+body
+    overflow-x: hidden !important
+
+@media only screen and ( max-width: 757px )
+    .row
+        margin-left: 0 !important
+        margin-right: 0 !important
+        margin-bottom: 4rem
+        padding: 0 !important
+    .row .col-xs
+        &:first-child
+            display: none
+        &:last-child
+            display: none
+
+@media screen and ( max-width: 767px)
+    #knd-home-card-rows .col-xs
+        display: block !important
+
+
+#knd-home-form
+    background-color: #ffffff
+    box-shadow: $box-shadow-btn
+    padding: 0.50rem
+    border-radius: 14px
+    margin-top: 0.25rem
+
+    div
+        display: flex
+        align-items: center
+        flex-direction: row
+
+    div #knd-home-form-button
+        box-shadow: $box-shadow-btn
+        padding: 0.50rem 1.50rem 0.50rem 1.50rem
+        border-radius: 24px
+        margin-top: 0.25rem
+        font-weight: 500
+        outline: none
+        color: $base-color
+        font-weight: 700
+
+    div #knd-home-form-button i
+        margin-right: 0.25rem
+
+    #knd-home-form-push
+        flex: 1 1 0%
+    
+    div #knd-home-form-loading
+        border-top: 2px solid black
+        border-bottom: 2px solid black
+        box-shadow: $box-shadow-btn
+        padding: 0.75rem
+        border-radius: 26px
+        -webkit-animation: spin 0.25s linear
+        animation: spin 0.25s linear infinite
+
+
+@for $var from 1 through 10
+    #knd-home-form div #knd-home-form-loading
+        transform: rotate(360deg * ($var - 1))
+        animation-delay: 0.10s
+
+@keyframes spin
+    0%
+        border-left: 2px solid red
+        border-top: 2px solid white
+        -webkit-transform: rotate(0deg)
+    100%
+        border-right: 2px solid red
+        border-top: 2px solid blue
+        -webkit-transform: rotate(360deg)
+        
+// Card
+
+.knd-push
+    flex: 1 1 0%
+
+.knd-home-card
+    margin-bottom: 0.50rem
+    margin-top: 0.25rem
+    box-shadow: $box-shadow-card
+    padding: 0.50rem
+    border-radius: 24px
+
+    .knd-home-card-header
+        display: flex
+        align-items: center
+        flex-direction: row
+        padding-left: 0.75rem
+        padding-right: 0.75rem
+        padding-top: 0.50rem
+        padding-bottom: 0.50rem
+        margin-left: 0.25rem
+        margin-right: 0.25rem
+        box-shadow: $box-shadow-btn
+        border-radius: 24px
+
+        .knd-home-card-avatar
+
+        .knd-home-card-avatar-nickname
+            margin-left: 0.25rem
+            font-weight: 600
+            text-decoration: none
+            color: $base-color
+
+            &:hover
+                color: black
+
+        .knd-home-card-btn-options
+            border-radius: 80%
+            width: 1.50rem
+            height: 1.50rem
+            display: flex
+            align-items: center
+            justify-content: center
+            box-shadow: $box-shadow-btn
+            color: $base-color
+            outline: none
+            transition: 0.50s
+
+            &:hover
+                color: skyblue
+
+    .knd-home-card-btn-group
+        display: flex
+        align-items: center
+        flex-direction: row
+        justify-content: center
+
+        .knd-home-card-btn
+            padding-left: 0.50rem
+            padding-right: 0.50rem
+            padding-top: 0.15rem
+            padding-bottom: 0.15rem
+            border-radius: 25px
+            text-align: center
+            box-shadow: $box-shadow-btn
+            font-weight: 600
+            margin-top: 0.25rem
+            margin-bottom: 0.25rem
+            font-size: 14px
+            outline: none
+
+            &:not(:first-child):not(:last-child)
+                margin-left: 0.45rem
+                margin-right: 0.45rem
+                color: red
+                border-left: 2px solid red
+                border-right: 2px solid red
+
+            &:first-child
+                color: $base-color
+                border-left: 2px solid $base-color
+                border-right: 2px solid $base-color
+    
+    .knd-home-card-content
+        word-wrap: break-word
+        word-break: break-word
+        margin-bottom: 0.25rem
+        p
+            font-family: $font-text
+            font-size: 15px
+                
+    .knd-home-card-actions
+        display: flex
+        align-items: center
+        flex-direction: row
+        justify-content: center
+        border-bottom: 0.4px solid #0000003b
+        padding-bottom: 0.50rem
+        border-top: 0.4px solid #0000003b
+        padding-top: 0.50rem
+
+        button
+            display: flex
+            align-items: center
+            margin-left: 0.25rem
+            margin-right: 0.25rem
+            box-shadow: $box-shadow-btn
+            border-radius: 24px
+            padding-left: 0.75rem
+            padding-right: 0.75rem
+            padding-top: 0.25rem
+            padding-bottom: 0.25rem
+            border-left: 2px solid $base-color
+            border-right: 2px solid $base-color
+            font-size: 14px
+            font-weight: 600
+            font-family: $font-text
+            color: $base-color
+            outline: none
+
+            &:hover
+
+            span
+                margin-left: 0.25rem
+                margin-right: 0.25rem
+
+    .knd-home-card-footer
+        display: flex
+        align-items: center
+        flex-direction: row
+        margin-top: 0.25rem
+        margin-bottom: 0.15rem
+
+        span
+            font-size: 14px
+            font-family: $font-text
+            font-weight: 500
+            color: $base-color
+
+            i
+                margin-right: 0.15rem
+        
+        .knd-home-card-actions-face
+            display: flex
+            align-items: center
+            white-space: nowrap
+            max-width: 120px
+            overflow-x: auto
+
+.knd-home-card-comments
+    max-height: 280px
+    overflow-y: auto
+    padding-top: 0.25rem
+    padding-bottom: 0.25rem
+    padding-left: 0.15rem
+    padding-right: 0.15rem
+
+    
+    .knd-home-card-comment
+        margin-top: 0.25rem
+        margin-bottom: 0.25rem
+        padding-left: 0.35rem
+        padding-right: 0.35rem
+        border-bottom: 0.4px solid #0000003b
+        border-left: 0.10px solid $base-color
+        border-right: 0.10px solid $base-color
+        border-radius: 5px
+
+        .knd-home-card-comment-header
+            display: flex
+            align-items: center
+            flex-direction: row
+            box-shadow: $box-shadow-btn
+            padding-left: 0.50rem
+            padding-right: 0.50rem
+            padding-top: 0.25rem
+            padding-bottom: 0.25rem
+            border-radius: 24px
+
+            .knd-home-card-comment-nickname
+                color: $base-color
+                font-size: 14px
+                font-weight: 600
+                margin-left: 0.15rem
+
+            .knd-home-card-comment-btn
+                padding: 0.25rem
+                display: flex
+                align-items: center
+                justify-content: center
+                color: red
+                box-shadow: $box-shadow-btn
+                border-left: 2px solid $base-color
+                border-right: 2px solid $base-color
+                border-radius: 25px
+            
+            .knd-home-card-comment-btn-loader
+                padding: 0.25rem
+                display: flex
+                align-items: center
+                justify-content: center
+                color: red
+                box-shadow: $box-shadow-btn
+                border-left: 2px solid red
+                border-right: 2px solid red
+                border-radius: 25px
+                cursor: default
+                -webkit-animation: spin-comments 2s linear
+                animation: spin-comments 0.25s linear infinite
+
+            @for $coms from 1 through 10
+                .knd-home-card-comment-btn-loader
+                    transform: rotate(360deg * ($coms - 1))
+                    animation-delay: 0.25s
+
+            @keyframes spin-comments
+                0%
+                    transform: rotate(0deg)
+                100%
+                    transform: rotate(360deg)
+
+        .knd-home-card-comment-content
+            word-wrap: break-word
+            word-break: break-word
+            padding: 0.15rem 0.25rem 0.15rem 0.25rem
+
+            p
+                font-size: 15px
+                font-family: $font-text
+
+            span
+                font-size: 14px
+                color: $base-color
+                font-weight: 400
+
+.knd-home-card-form-comments
+    padding: 0.15rem 0.30rem 0.15rem 0.30rem
+
+    div
+        display: flex
+        align-items: center
+        flex-direction: row
+
+    div .knd-home-card-form-comments-loader
+        transform: rotate(50deg)
+        position: relative
+        -webkit-animation: comments 1s linear
+        animation: comments 1s linear infinite
+        transition: 1s
+         
+
+    @keyframes comments
+        0%
+            left: 0
+        25%
+            left: 50px
+        50%
+            left: 100px
+        75%
+            transform: rotate(-150deg)
+            left: -100px
+        100%
+            left: 0
+                
+
+    div button
+        box-shadow: $box-shadow-btn
+        font-size: 15px
+        color: $base-color
+        font-weight: 600
+        text-align: center
+        padding-left: 0.45rem
+        padding-right: 0.45rem
+        padding-top: 0.15rem
+        padding-bottom: 0.15rem
+        border-left: 2px solid $base-color
+        border-right: 2px solid $base-color
+        border-radius: 24px
+        margin-top: 0.20rem
+        margin-bottom: 0.35rem
+
+
+.knd-home-card-header-page
+    display: flex
+    flex-direction: row
+    align-items: center
+    padding-top: 0.50rem
+    padding-bottom: 0.50rem
+    padding-left: 0.25rem
+    padding-right: 0.25rem
+
+    button
+        width: 200px
+        border-radius: 24px
+        box-shadow: $box-shadow-btn
+        border-top: 2px solid $base-color
+        border-bottom: 2px solid $base-color
+        text-align: left
+        padding-left: 0.50rem
+        font-size: 14px
+        font-weight: 600
+        font-family: $font-text
+        outline: none
+
+
+        i
+            margin-right: 0.50rem
+
+@media screen and ( min-width: 768px )
+    #knd-home-card-max-width
+        width: 560px
+
+    .knd-home-card-header-page
+        padding-top: 1.80rem
+        padding-bottom: 1.80rem
+        width: 90%
+        display: block
+        margin-right: auto
+        margin-left: auto
+
+    .knd-home-card-width
+        width: 90%
+        display: block
+        margin-left: auto
+        margin-right: auto
+
+@media screen and ( max-width: 767px )
+    .knd-home-card-header-page
+        padding-top: 0.80rem
+        padding-bottom: 0.40rem
+        button
+            display: block
+            margin-left: auto
+            margin-right: auto
+    
+@media screen and ( max-width: 900px ) and ( min-width: 768px)
+    .row 
+        .col-xs
+            &:first-child
+                position: sticky
+                position: -webkit-sticky
+                top: 0.15rem
+                align-self: flex-start
+
+            &:last-child
+                display: none
+
+
+// Dialog Form Retrieve
+
+
+.knd-dialog-form-retrieve
+    div
+        display: flex
+        align-items: center
+        flex-direction: row
+        margin-top: 0.25rem
+
+        .knd-dialog-form-retrieve-loader
+            padding: 0.25rem
+            border-radius: 24px
+
+            &::after
+                content: ''
+                border: 2px solid $base-color
+                width: 0.45rem
+                height: 0.45rem
+                -webkit-animation: retrieve 0.20s linear
+                animation: retrieve 0.20s linear infinite
+                margin-left: 0.15rem
+                margin-right: 0.15rem
+            
+            &::before
+                content: ''
+                border: 2px solid $base-color
+                width: 0.45rem
+                margin-left: 0.15rem
+                margin-right: 0.15rem
+                height: 0.45rem
+                -webkit-animation: retrieve 0.20s linear
+                animation: retrieve 0.20s linear infinite
+
+        @keyframes retrieve
+            0%
+                transform: rotate(0deg)
+                border: 2px solid red
+            50%
+                transform: rotate(90deg)
+                border: 2px solid blue
+            75%
+                transform: rotate(180deg)
+                border: 2px solid $base-color
+            100%
+                transform: rotate(360deg)
+                border: 2px solid black
+
+        button
+            padding-left: 0.50rem
+            padding-right: 0.50rem
+            padding-top: 0.15rem
+            padding-bottom: 0.15rem
+            border-radius: 24px
+            text-align: center
+            border-top: 2px solid $base-color
+            border-bottom: 2px solid $base-color
+            outline: none
+
+            &:first-child
+                border-bottom: 2px solid skublue
+                border-top: 2px solid skublue
+            
+            &:last-child
+                margin-left: 0.25rem
+                margin-right: 0.25rem
+
+#knd-title-options-dialog
+    font-weight: 700 !important
+    font-size: 16px !important
+    font-family: $font-text !important
+    color: $base-color !important
+
+
+// Dialog Destroy Content
+
+.knd-home-dialog-destroy
+    word-break: break-word
+    word-wrap: break-word
+
+    p
+        font-size: 14px
+        font-family: $font-text
+        margin-bottom: 0.50rem
+
+    div
+        display: flex
+        align-items: center
+        flex-direction: row
+    
+    div .knd-home-dialog-destroy-btn
+        padding-left: 0.50rem
+        padding-right: 0.50rem
+        padding-top: 0.15rem
+        padding-bottom: 0.15rem
+        border-radius: 24px
+        text-align: center
+        outline: none
+        border-top: 2px solid $base-color-red
+        border-bottom: 2px solid $base-color-red
+        
+        &:last-child
+            margin-left: 0.25rem
+            margin-right: 0.25rem
+            border-top: 2px solid $base-color
+            border-bottom: 2px solid $base-color
+    
+    div .knd-home-dialog-destroy-loader
+        padding: 0.25rem
+        position: relative
+        animation: destroy-content 2.5s linear
+        -webkit-animation: destroy-content 2.5s linear infinite
+
+    @keyframes destroy-content
+        0%
+            right: 0
+        25%
+            right: 10px
+        50%
+            right: 20px
+            color: red
+        75%
+            right: 40px
+            color: red
+        100%
+            right: 60px
+            color: red
+                
+        
+
+@media screen and ( min-width: 901px )
+    #knd-home-custom-rows 
+        .col-xs
+            &:first-child
+                position: sticky
+                position: -webkit-sticky
+                top: 0.15rem
+                align-self: flex-start
+            
+            &:last-child
+                position: sticky
+                position: -webkit-sticky
+                top: 0.15rem
+                align-self: flex-start

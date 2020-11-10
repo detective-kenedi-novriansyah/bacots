@@ -8,7 +8,9 @@ import './assets/tailwindcss.css'
 import "bulma/css/bulma.css"
 import "./assets/input.css"
 import "./assets/bacot.css"
-import './assets/knd-card.css'
+import "./assets/sass/knd-home.sass"
+import "./assets/sass/knd-profil.sass"
+import "./assets/sass/knd-navbar.sass"
 import "flexboxgrid/dist/flexboxgrid.min.css"
 import configureStore, { history } from './configureStore'
 import Routes from './routes'

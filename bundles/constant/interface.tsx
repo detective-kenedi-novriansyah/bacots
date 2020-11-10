@@ -30,6 +30,7 @@ export interface Content {
 }
 
 export interface User {
+    id?: number
     username?: string;
     email?: string;
     first_name?: string;
@@ -42,7 +43,10 @@ export interface User {
 
 
 export interface Authenticate {
+    id?: number
+    public_id?: string;
     avatar?: string;
+    background?: string;
     country?: string;
     city?: string;
     address?: string;
@@ -77,6 +81,15 @@ export interface Schema {
         close?: string;
         text_update?: string;
         logo?: string;
+        comment?: string;
+        text_comment?: string;
+        send_comment?: string;
+        like?: string;
+        report?: string;
+        back?: string;
+    }
+    validate?: {
+        validate_not_found?: string;
     }
     bacot?: {
         description?: string;
@@ -117,11 +130,18 @@ export type RetrieveContent = Pick<CompositeBacotLoading, "description" | "loadi
 export interface LikesContent {
     content?: number;
     user?: string;
+    detail?: boolean;
 }
 
 export interface CommentContent {
     content?: number;
     user?: string;
     comment?: string;
-    loading?: boolean;
+    detail?: boolean;
+    loading?: number;
+}
+
+export interface DestroyCommentDetail {
+    loading: number;
+    detail: boolean
 }
