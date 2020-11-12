@@ -438,7 +438,7 @@ export const detailContent = (pk: number, content: Content[], history: History, 
             })
             history.push({
                 pathname: '/detail',
-                search: `${pk}`
+                search: `${check_content[0].public_id}`
             })
             return response
         } else {
@@ -457,9 +457,9 @@ export const detailContent = (pk: number, content: Content[], history: History, 
     }
 }
 
-export const fetchDetailContent = (pk: number) => {
+export const fetchDetailContent = (pk: any, history: History) => {
     return async (dispatch: Dispatch) => {
-        const response = await axios.get(`api/v1/bacot/${pk}/`, {
+        const response = await axios.get(`api/v1/bacot/custom/detail/${pk}/`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
@@ -481,6 +481,18 @@ export const fetchDetailContent = (pk: number) => {
                     loadingScreen : false
                 }
             })
+            if(window.location.pathname !== "/detail") {
+                dispatch({
+                    type: ContentTypes.MOVE_DETAIL_CONTENT,
+                    payload: {
+                        detail: res.data
+                    }
+                })
+                history.push({
+                    pathname: '/detail',
+                    search: `${res.data.public_id}`
+                })
+            }
         }).catch((err: any) => {
             if(err.response.data) {
                 dispatch({

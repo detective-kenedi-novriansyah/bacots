@@ -1,362 +1,237 @@
 $base-color: #7d686b
-$base-color-placeholder: #7d686b91
-$base-color-red: #f20c0c
-$box-shadow-btn: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149)
-$box-shadow-card: 0px 10px 1px #ddd, 0 10px 20px #ccc
-$font-text: "Segoe UI", Meiryo, system-ui, -apple-system, BlinkMacSystemFont, sans-serif
+$awesome-font-size-text-small: 12px
+$awesome-font-size-text: 14px
+$awesome-font-weight-text-1: 100
+$awesome-font-weight-text-2: 200
+$awesome-font-weight-text-3: 300
+$awesome-font-weight-text-4: 400
+$awesome-font-weight-text-5: 500
+$awesome-font-weight-text: 600
+$awesome-border-radius-button: 10px
+$awesome-font-color-text: #4d5156
+$aweomse-font-family-text: Roboto,arial,sans-serif
+$awesome-button-box: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149)
+$awesome-card-box: 0px 10px 1px #ddd, 0 10px 20px #ccc
 
+.knd-navbar
+    margin-bottom: 0.25rem
+    height: 4rem
+    background-color: #ffffff
+    box-shadow: $awesome-button-box
+    display: flex
+    align-items: center
+    justify-content: space-between
 
-header
-    .knd-navbar
+    .knd-navbar-first
         display: flex
         align-items: center
         flex-direction: row
-        padding-top: 0.85rem
-        padding-bottom: 0.85rem
-        padding-left: 0.15rem
-        padding-right: 0.15rem
-        box-shadow: $box-shadow-btn
-        border-bottom-left-radius: 24px
-        border-bottom-right-radius: 24px
-        margin-bottom: 0.50rem
-        font-weight: 700
-        font-family: $font-text
-        border-bottom: 4px solid $base-color
 
-        .knd-navbar-group 
+        button
+            margin-left: 0.75rem
+            margin-right: 0.75rem
+            padding-top: 0.25rem
+            padding-bottom: 0.25rem
+            padding-left: 0.75rem
+            padding-right: 0.75rem
+            border-right: 2px solid $base-color
+            border-left: 2px solid $base-color
+            box-shadow: $awesome-button-box
+            border-radius: $awesome-border-radius-button
+            outline: none
+
+    .knd-navbar-input
+        display: flex
+        align-items: center
+        flex-direction: row
+        background-color: $base-color
+        width: 360px
+        height: 2.25rem
+        border-radius: $awesome-border-radius-button
+
+        input[type="text"]
+            width: 100%
+            outline: none
+            height: 100%
+            background-color: transparent
+            color: #ffffff
+            padding-left: 0.50rem
+            padding-right: 0.50rem
+            font-family: $aweomse-font-family-text
+
+        \::-webkit-input-placeholder
+            color: #ffffff
+
+        \:-ms-input-placeholder
+            color: #ffffff
+
+        \::placeholder
+            color: #ffffff
+        button
+            padding: 0.50rem
             display: flex
-            align-items: center
-            flex-direction: row
+            margin-right: 0.25rem
+            border-radius: 80%
+            background-color: #ffffff
 
-            button
-                padding-left: 0.75rem
-                padding-right: 0.75rem
-                padding-top: 0.35rem
-                padding-bottom: 0.35rem
-                border-radius: 24px
-                box-shadow: $box-shadow-btn
-                border-top: 2px solid $base-color
-                border-bottom: 2px solid $base-color
-                outline: none
+
+    .knd-navbar-group-button-auth
+        display: flex
+        align-items: center
+        flex-direction: row
+
+        .knd-navbar-button-auth
+            outline: none
+            padding-top: 0.25rem
+            padding-bottom: 0.25rem
+            padding-left: 0.75rem
+            padding-right: 0.75rem
+            background-color: $base-color
+            border-radius: 10px
+            color: #ffffff
+            box-shadow: $awesome-button-box
+            font-weight: bold
+            text-transform: capitalize
+
+            &:last-child
+                margin-left: 0.50rem
+                margin-right: 0.75rem
+        img
+            width: 40px
+            height: 40px
+            border-radius: $awesome-border-radius-button
+            background-size: contain
+            background-repeat: no-repeat
+            background-position: center
+            box-shadow: $awesome-button-box
+            margin-left: 0.75rem
+            margin-right: 0.75rem
+            cursor: pointer
+        
+        button
+            margin-left: 0.75rem
+            margin-right: 0.75rem
+            padding-top: 0.25rem
+            padding-bottom: 0.25rem
+            padding-left: 0.75rem
+            padding-right: 0.75rem
+            border-right: 2px solid $base-color
+            border-left: 2px solid $base-color
+            box-shadow: $awesome-button-box
+            border-radius: $awesome-border-radius-button
+            outline: none
+
+            .fa-bell
+                color: orange
+            
+            .fa-comment-alt
                 color: $base-color
-
-                &:last-child
-                    margin-left: 0.50rem
-                    margin-right: 0.50rem
     .knd-navbar-bottom
-        display: none         
+        display: none
 
-@media screen and ( min-width:  930px )
-    header
-        .knd-navbar
-            .knd-navbar-filter
-                box-shadow: $box-shadow-btn
-                border-radius: 24px
-                display: flex
-                align-items: center
-                flex-direction: row
-                border-top: 2px solid $base-color
-                border-bottom: 2px solid $base-color
-
-                input[type="text"]
-                    outline: none
-                    height: 2.25rem
-                    color: $base-color
-                    padding-left: 0.50rem
-                    padding-right: 0.25rem
-
-                \::-webkit-input-placeholder
-                    color: $base-color-placeholder
-
-                \:-ms-input-placeholder
-                    color: $base-color-placeholder
-
-                \::placeholder
-                    color: $base-color-placeholder
-                
-                button
-                    height: 2.10rem
-                    width: 2.10rem
-                    border-radius: 80%
-                    box-shadow: $box-shadow-btn
-                    color: $base-color
-                    font-weight: bold
-                    outline: none
-
-            .knd-navbar-group-is
-                display: flex
-                align-items: center
-                flex-direction: row
-
-                img
-                    width: 40px
-                    box-shadow: $box-shadow-btn
-                    height: 40px
-                    border-radius: 80%
-                    cursor: pointer
-                    padding: 0.25rem
-                    background-size: contain
-                    background-position: center
-                    background-repeat: no-repeat
-                    margin-left: 0.50rem
-                    margin-right: 0.50rem
-                
-                button
-
-                    padding-top: 0.75rem
-                    padding-bottom: 0.75rem
-                    padding-left: 1.25rem
-                    padding-right: 1.25rem
-                    box-shadow: $box-shadow-btn
-                    border-radius: 24px
-                    border-left: 2px solid $base-color
-                    border-right: 2px solid $base-color
-                    margin-left: 0.75rem
-                    margin-right: 0.75rem
-                    outline: none
-                    display: flex
-                    align-items: center
-                    justify-content: center
-
-                    .fa-bell
-                        color: orange
-                    
-                    .fa-comments
-                        color: skyblue
-
-                    .fa-globe-asia
-                        color: green
-
-@media screen and ( max-width: 929px ) and ( min-width: 768px )
-    header
-        .knd-navbar
-            .knd-navbar-filter
-                box-shadow: $box-shadow-btn
-                border-radius: 24px
-                display: flex
-                align-items: center
-                flex-direction: row
-                border-top: 2px solid $base-color
-                border-bottom: 2px solid $base-color
-
-                input[type="text"]
-                    height: 2.05rem
-                    outline: none
-                    color: $base-color
-                    padding-left: 0.50rem
-                    padding-right: 0.25rem
-                    width: 200px
-
-                \::-webkit-input-placeholder
-                    color: $base-color-placeholder
-
-                \:-ms-input-placeholder
-                    color: $base-color-placeholder
-
-                \::placeholder
-                    color: $base-color-placeholder
-
-                button
-                    height: 2.35rem
-                    width: 2.35rem
-                    border-radius: 80%
-                    box-shadow: $box-shadow-btn
-                    color: $base-color
-                    font-weight: bold
-                    outline: none
-
-            .knd-navbar-group-is
-                display: flex
-                align-items: center
-                flex-direction: row
-
-                button
-                    padding-left: 0.75rem
-                    padding-right: 0.75rem
-                    padding-top: 0.35rem
-                    padding-bottom: 0.35rem
-                    border-radius: 24px
-                    box-shadow: $box-shadow-btn
-                    margin-left: 0.25rem
-                    margin-right: 0.25rem
-                    display: flex
-                    align-items: center
-                    justify-content: center
-                    border-left: 2px solid $base-color
-                    border-right: 2px solid $base-color
-
-                    .fa-bell
-                        color: orange
-                
-                    .fa-comments
-                        color: skyblue
-
-                    .fa-globe-asia
-                        color: green
-
-                img
-                    width: 45px
-                    height: 45px
-                    box-shadow: $box-shadow-btn
-                    padding: 0.50rem
-                    border-radius: 80%
-                    background-size: contain
-                    background-position: center
-                    background-repeat: no-repeat
-                    margin-left: 0.75rem
-                    margin-right: 0.35rem
+@media screen and ( max-width: 900px ) and ( min-width: 768px)
+    .knd-navbar
+        .knd-navbar-first
+            img
+                width: 100px
+        .knd-navbar-input
+            width: 240px
 
 @media screen and ( max-width: 767px )
     header
         .knd-navbar
-            img
-                height: 40px
-                width: 120px
-                background-size: contain
-                background-position: center
-                background-repeat: no-repeat
-            .knd-navbar-filter
-                display: none
-            .knd-navbar-group-is
-                display: flex
-                align-items: center
-                flex-direction: row
+            position: -webkit-sticky
+            position: sticky
+            top: 0
+            .knd-navbar-first
                 button
                     display: none
+            img
+                width: 100px
 
-                    &:first-child
-                        display: block
-                        position: absolute
-                        left: 41%
-                        right: 50%
-                        width: 80px
-                        height: 40px
-                        border-radius: 24px
-                        box-shadow: $box-shadow-btn
-                        
-                img
-                    width: 45px
-                    height: 45px
-                    box-shadow: $box-shadow-btn
-                    padding: 0.50rem
-                    border-radius: 80%
-                    background-size: contain
-                    background-position: center
-                    background-repeat: no-repeat
-                    margin-left: 0.75rem
-                    margin-right: 0.35rem
-            .knd-navbar-group  
-                button
-                    padding-left: 0.50rem
-                    padding-right: 0.50rem
-                    padding-top: 0.25rem
-                    padding-bottom: 0.25rem
-                    border-radius: 24px
-                    color: $base-color
-                    box-shadow: $box-shadow-btn
-                    border-bottom: 2px solid $base-color
-                    border-top: 2px solid $base-color
-                    outline: none
-                    font-size: 15px
-                    font-weight: 700
+            .knd-navbar-input
+                display: none
 
             .knd-navbar-bottom
                 display: flex
                 align-items: center
                 flex-direction: row
+                justify-content: center
                 position: fixed
-                bottom: 0
-                height: 60px
-                box-shadow: $box-shadow-btn
-                border-top-left-radius: 12px
-                border-top-right-radius: 12px
+                border-top-left-radius: 10px
+                border-top-right-radius: 10px
                 width: 100%
                 background-color: #ffffff
-                z-index: 2
-                justify-content: center
-
+                z-index: 120
+                bottom: 0
+                height: 4rem
+                
                 button
-                    width: 60px
-                    height: 30px
-                    border-radius: 24px
-                    box-shadow: $box-shadow-btn
-                    margin-left: 0.50rem
-                    margin-right: 0.50rem
-
-@media screen and ( max-width: 360px )
-    header
-        .knd-navbar
-            img
-                height: 40px
-                width: 120px
-                background-size: contain
-                background-position: center
-                background-repeat: no-repeat
-            .knd-navbar-filter
-                display: none
-            .knd-navbar-group-is
-                display: flex
-                align-items: center
-                flex-direction: row
-                button
-                    display: none
-
-                    &:first-child
-                        display: block
-                        position: absolute
-                        left: 39%
-                        right: 50%
-                        width: 80px
-                        height: 40px
-                        border-radius: 24px
-                        box-shadow: $box-shadow-btn
-                        
-                img
-                    width: 45px
-                    height: 45px
-                    box-shadow: $box-shadow-btn
-                    padding: 0.50rem
-                    border-radius: 80%
-                    background-size: contain
-                    background-position: center
-                    background-repeat: no-repeat
                     margin-left: 0.75rem
-                    margin-right: 0.35rem
-            .knd-navbar-group  
-                button
-                    padding-left: 0.50rem
-                    padding-right: 0.50rem
+                    margin-right: 0.75rem
                     padding-top: 0.25rem
                     padding-bottom: 0.25rem
-                    border-radius: 24px
-                    color: $base-color
-                    box-shadow: $box-shadow-btn
-                    border-bottom: 2px solid $base-color
-                    border-top: 2px solid $base-color
+                    padding-left: 0.75rem
+                    padding-right: 0.75rem
+                    border-right: 2px solid $base-color
+                    border-left: 2px solid $base-color
+                    box-shadow: $awesome-button-box
+                    border-radius: $awesome-border-radius-button
                     outline: none
-                    font-size: 15px
-                    font-weight: 700
+.knd-navbar-menu-list
+    .knd-navbar-menu-item-group
+        display: flex
+        flex-direction: column
 
-@media screen and ( max-width: 369px )
-    header
-        .knd-navbar
-            img
-                height: 30px
-                width: 90px
-                background-size: contain
-                background-position: center
-                background-repeat: no-repeat
-            .knd-navbar-group  
-                button
-                    padding-left: 0.25rem
-                    padding-right: 0.25rem
-                    padding-top: 0.12.5rem
-                    padding-bottom: 0.12.5rem
-                    border-radius: 24px
-                    color: $base-color
-                    box-shadow: $box-shadow-btn
-                    border-bottom: 2px solid $base-color
-                    border-top: 2px solid $base-color
-                    outline: none
-                    font-size: 13px
-                    font-weight: 700
+        .knd-navbar-menu-item-loader-hide
+            display: none
+
+        .knd-navbar-menu-item-loader
+            width: 30px
+            height: 30px
+            display: block
+            margin-left: auto
+            margin-right: auto
+            border-radius: 80%
+            box-shadow: $awesome-button-box
+            border-top: 2px solid $base-color
+            border-bottom: 2px solid $base-color
+            -webkit-animation: dropdown-animation 0.50s infinite
+            animation: dropdown-animation 0.50s linear infinite
+
+            @keyframes dropdown-animation
+                0%
+                    transform: rotate(0deg)
+                100%
+                    transform: rotate(360deg)
+                    
+
+        #knd-navbar-menu-item
+            display: none
+
+        .knd-navbar-menu-item
+            font-size: $awesome-font-size-text
+            font-weight: $awesome-font-weight-text
+            text-transform: capitalize
+            margin-top: 0.25rem
+            margin-bottom: 0.25rem
+            text-align: left
+            &:first-child
+                text-align: center
+            &:last-child
+                text-align: center
+            i
+                margin-right: 0.25rem
+
+@media screen and ( min-width: 356px )
+    .knd-navbar-bottom
+        button
+            &:last-child
+                display: none
+    
+
+@media screen and ( max-width: 355px )
+    .knd-navbar-group-button-auth
+        .knd-navbar-button-auth-x
+            &:first-child
+                display: none

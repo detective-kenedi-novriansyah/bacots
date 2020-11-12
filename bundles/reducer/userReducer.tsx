@@ -30,6 +30,13 @@ export const userReducer: Reducer<UserState> = (state = initialState, action) =>
                 validate: action.payload.validate
             }
             break
+        case UserTypes.RETRIEVE_SECURITY:
+            return {
+                ...state,
+                validate: action.payload.validate,
+                message: action.payload.message
+            }
+            break
         default:
             return state
             break;

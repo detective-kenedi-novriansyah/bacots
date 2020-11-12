@@ -23,7 +23,8 @@ export const isAuthenticate = () => {
             dispatch({
                 type: AuthTypes.IS_AUTHENTICATE,
                 payload: {
-                    is_authenticate: res.data
+                    is_authenticate: res.data.authenticate,
+                    notification: res.data.notification
                 }
             })
         }).catch((err: any) => {
@@ -94,6 +95,66 @@ export const detailAuth = (newValue: string, history: History) => {
                         }
                     }
                 })
+            }
+        })
+        return response
+    }
+}
+
+export const openDialogNotification = () => {
+    return async (dispatch: Dispatch) => {
+        const response = await dispatch({
+            type: AuthTypes.OPEN_DIALOG_NOTIFICATION,
+            payload: {
+                is_open_notification: true
+            }
+        })
+        return response
+    }
+}
+
+export const retrieveAuth = (pk: number,data: FormData,setLoading: React.Dispatch<React.SetStateAction<boolean>>) => {
+    return async(dispatch: Dispatch) => {
+        const response = await axios.post(`api/v1/user/retrieve/${pk}/`, data, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'POST',
+                'Access-Control-Allow-Headers': 'Content-Type, Origin, Accepted, Authorization, X-Reuqested-With',
+                'Authorization': `Token ${localStorage.getItem('token')}`
+            },
+            timeout: 865000,
+            responseType: 'json',
+            withCredentials: false,
+            maxContentLength: 2000,
+            maxRedirects: 5,
+            validateStatus: (status: number) => status >= 200 && status < 300
+        }).then((res: AxiosResponse<any>) => {
+            dispatch({
+                type: AuthTypes.RETRIEVE_AUTH,
+                payload: {
+                    is_authenticate: res.data.is_authenticate,
+                    validate: true,
+                    message: {
+                        message: res.data.message,
+                        validate: true
+                    }
+                }
+            })
+            setLoading(false)
+        }).catch((err: any) => {
+            if(err.response.data) {
+                dispatch({
+                    type: AuthTypes.FAILURE_AUTH,
+                    payload: {
+                        validate: true,
+                        message: {
+                            message: err.response.data.message ? err.response.data.message : err.response.data.detail,
+                            validate: false
+                        }
+                    }
+                })
+                setLoading(false)
             }
         })
         return response

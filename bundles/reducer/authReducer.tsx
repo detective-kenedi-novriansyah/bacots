@@ -5,6 +5,8 @@ const initialState: AuthState = {
     auth: [],
     data: {},
     content: [],
+    notification: {},
+    is_open_notification: false,
     is_authenticate: {},
     validate: false,
     message: {}
@@ -15,7 +17,8 @@ export const authReducer: Reducer<AuthState> = (state = initialState,action) => 
         case AuthTypes.IS_AUTHENTICATE:
             return {
                 ...state,
-                is_authenticate: action.payload.is_authenticate
+                is_authenticate: action.payload.is_authenticate,
+                notification: action.payload.notification
             }
             break;
         case AuthTypes.EXPIRES_TOKEN:
@@ -28,7 +31,8 @@ export const authReducer: Reducer<AuthState> = (state = initialState,action) => 
         case AuthTypes.CLOSE_ALERT:
             return {
                 ...state,
-                validate: action.payload.validate
+                validate: action.payload.validate,
+                is_open_notification: action.payload.is_open_notification
             }
             break
         case AuthTypes.DETAIL_AUTH:
@@ -63,6 +67,20 @@ export const authReducer: Reducer<AuthState> = (state = initialState,action) => 
             return {
                 ...state,
                 content: state.content.map((x) => x.id === action.payload.id ? action.payload.content : x)
+            }
+            break
+        case AuthTypes.OPEN_DIALOG_NOTIFICATION:
+            return {
+                ...state,
+                is_open_notification: action.payload.is_open_notification
+            }
+            break
+        case AuthTypes.RETRIEVE_AUTH:
+            return {
+                ...state,
+                validate: action.payload.validate,
+                is_authenticate: action.payload.is_authenticate,
+                message: action.payload.message
             }
             break
         default:

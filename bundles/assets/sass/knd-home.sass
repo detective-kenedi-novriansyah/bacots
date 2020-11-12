@@ -7,12 +7,29 @@
 
 // box-shadow-card: box-shadow: 0px 10px 1px #ddd, 0 10px 20px #ccc;       
 // box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149);
-
+$base-color-text: #4d5156
+$base-font-size-text: 14px
+$base-font-text: Roboto,arial,sans-serif
+$base-font-weight-text: 600
 $base-color: #7d686b
 $base-color-red: #f20c0c
 $box-shadow-btn: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149)
 $box-shadow-card: 0px 10px 1px #ddd, 0 10px 20px #ccc
-$font-text: "Segoe UI", Meiryo, system-ui, -apple-system, BlinkMacSystemFont, sans-serif
+
+$base-color: #7d686b
+$awesome-font-size-text-small: 12px
+$awesome-font-size-text: 14px
+$awesome-font-weight-text-1: 100
+$awesome-font-weight-text-2: 200
+$awesome-font-weight-text-3: 300
+$awesome-font-weight-text-4: 400
+$awesome-font-weight-text-5: 500
+$awesome-font-weight-text: 600
+$awesome-border-radius-button: 10px
+$awesome-font-color-text: #4d5156
+$awesome-font-family-text: Roboto,arial,sans-serif
+$awesome-button-box: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149)
+$awesome-card-box: 0px 10px 1px #ddd, 0 10px 20px #ccc
 
 body
     overflow-x: hidden !important
@@ -113,6 +130,14 @@ body
         border-radius: 24px
 
         .knd-home-card-avatar
+            width: 40px
+            height: 40px
+            box-shadow: $awesome-button-box
+            border-radius: $awesome-border-radius-button
+            background-size: contain
+            background-position: center
+            background-repeat: no-repeat
+            cursor: pointer
 
         .knd-home-card-avatar-nickname
             margin-left: 0.25rem
@@ -175,8 +200,10 @@ body
         word-break: break-word
         margin-bottom: 0.25rem
         p
-            font-family: $font-text
-            font-size: 15px
+            font-size: $base-font-size-text
+            color: $base-color-text
+            font-family: $base-font-text
+            font-weight: $base-font-weight-text
                 
     .knd-home-card-actions
         display: flex
@@ -203,11 +230,9 @@ body
             border-right: 2px solid $base-color
             font-size: 14px
             font-weight: 600
-            font-family: $font-text
+            font-family: $base-font-text
             color: $base-color
             outline: none
-
-            &:hover
 
             span
                 margin-left: 0.25rem
@@ -222,7 +247,7 @@ body
 
         span
             font-size: 14px
-            font-family: $font-text
+            font-family: $base-font-text
             font-weight: 500
             color: $base-color
 
@@ -235,6 +260,17 @@ body
             white-space: nowrap
             max-width: 120px
             overflow-x: auto
+
+            div
+                .knd-home-card-actions-face-avatar
+                    width: 30px
+                    height: 30px
+                    box-shadow: $awesome-button-box
+                    border-radius: $awesome-border-radius-button
+                    background-size: contain
+                    background-position: center
+                    background-repeat: no-repeat
+                    cursor: pointer
 
 .knd-home-card-comments
     max-height: 280px
@@ -265,6 +301,16 @@ body
             padding-top: 0.25rem
             padding-bottom: 0.25rem
             border-radius: 24px
+
+            .knd-home-card-comment-avatar
+                width: 30px
+                height: 30px
+                box-shadow: $awesome-button-box
+                border-radius: $awesome-border-radius-button
+                background-size: contain
+                background-position: center
+                background-repeat: no-repeat
+                cursor: pointer
 
             .knd-home-card-comment-nickname
                 color: $base-color
@@ -314,8 +360,10 @@ body
             padding: 0.15rem 0.25rem 0.15rem 0.25rem
 
             p
-                font-size: 15px
-                font-family: $font-text
+                font-size: $base-font-size-text
+                color: $base-color-text
+                font-family: $base-font-text
+                font-weight: $base-font-weight-text
 
             span
                 font-size: 14px
@@ -388,7 +436,7 @@ body
         padding-left: 0.50rem
         font-size: 14px
         font-weight: 600
-        font-family: $font-text
+        font-family: $base-font-text
         outline: none
 
 
@@ -505,7 +553,7 @@ body
 #knd-title-options-dialog
     font-weight: 700 !important
     font-size: 16px !important
-    font-family: $font-text !important
+    font-family: $base-font-text !important
     color: $base-color !important
 
 
@@ -517,7 +565,7 @@ body
 
     p
         font-size: 14px
-        font-family: $font-text
+        font-family: $base-font-text
         margin-bottom: 0.50rem
 
     div

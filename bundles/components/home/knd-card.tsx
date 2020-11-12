@@ -2,7 +2,6 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../configureStore";
 import _ from "lodash";
-import { Avatar } from "antd";
 import { Grow, TextField } from "@material-ui/core";
 import moment from "moment";
 import {
@@ -129,11 +128,7 @@ const KndCard: React.FunctionComponent<KndCardProps> = (props: React.PropsWithCh
         <article key={index}>
           <div className="knd-home-card" id="knd-home-card-max-width">
             <div className="knd-home-card-header">
-              <Avatar
-                src={base.author.avatar}
-                alt=""
-                className="knd-home-card-avatar"
-              />
+              <img src={base.author.avatar} alt="" className="knd-home-card-avatar"/>
               <a onClick={onClickProfile.bind(base,base.author.public_id)} className="knd-home-card-avatar-nickname">
                 {base.author.user ? base.author.user.first_name : ""}
               </a>
@@ -160,12 +155,14 @@ const KndCard: React.FunctionComponent<KndCardProps> = (props: React.PropsWithCh
                 {...(Boolean(options) ? { timeout: 1000 } : {})}
               >
                 <div className="knd-home-card-btn-group">
+                  {localStorage.getItem('token_id_').split('$')[1] === base.author.id.toString() ? 
                   <button className="knd-home-card-btn" onClick={onClickShowDialogRetrieve.bind(base,base.id)}>
                     {fields.button ? fields.button.update : ""}
-                  </button>
+                  </button> : null }
+                  {localStorage.getItem('token_id_').split('$')[1] === base.author.id.toString() ? 
                   <button className="knd-home-card-btn" onClick={onClickShowDialogDestroy.bind(base,base.id)}>
                     {fields.button ? fields.button.delete : ""}
-                  </button>
+                  </button> : null }
                   <button className="knd-home-card-btn">
                     {fields.button ? fields.button.report : ""}
                   </button>
@@ -196,7 +193,7 @@ const KndCard: React.FunctionComponent<KndCardProps> = (props: React.PropsWithCh
               <div className="knd-home-card-actions-face">
                 {_.map(base.like, (baseLikes, indexLikes) => (
                   <div key={indexLikes}>
-                    <Avatar
+                    <img
                       src={baseLikes.author.avatar}
                       className="knd-home-card-actions-face-avatar"
                     />
@@ -240,7 +237,7 @@ const KndCard: React.FunctionComponent<KndCardProps> = (props: React.PropsWithCh
               {_.map(base.comment, (baseComs, indexComs) => (
                 <div className="knd-home-card-comment" key={indexComs}>
                   <div className="knd-home-card-comment-header">
-                    <Avatar
+                    <img
                       src={baseComs.author.avatar}
                       className="knd-home-card-comment-avatar"
                     />
@@ -251,6 +248,7 @@ const KndCard: React.FunctionComponent<KndCardProps> = (props: React.PropsWithCh
                     </a>
                     <div className="knd-push"></div>
                     {commentX.loading !== baseComs.id ? (
+                      localStorage.getItem('token_id_').split('$')[1] === baseComs.author.id.toString() ? 
                       <button
                         className="knd-home-card-comment-btn"
                         onClick={onClickDestroyComments.bind(
@@ -259,7 +257,7 @@ const KndCard: React.FunctionComponent<KndCardProps> = (props: React.PropsWithCh
                         )}
                       >
                         <i className="fas fa-trash"></i>
-                      </button>
+                      </button> : null 
                     ) : (
                       <div className="knd-home-card-comment-btn-loader">
                         <i className="fas fa-dot-circle"></i>

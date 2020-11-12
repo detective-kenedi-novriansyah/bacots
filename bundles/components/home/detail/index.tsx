@@ -1,5 +1,4 @@
 import { Grow } from "@material-ui/core";
-import { Avatar } from "antd";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router";
@@ -42,7 +41,7 @@ const KndDetail = () => {
   React.useEffect(() => {
     let mounted = true;
     if (mounted) {
-      dispatch(fetchDetailContent(location.search.split("?")[1] as any));
+      dispatch(fetchDetailContent(location.search.split("?")[1] as any, history));
     }
     return () => {
       mounted = false;
@@ -138,7 +137,7 @@ const KndDetail = () => {
               <article>
                 <div className="knd-home-card">
                   <div className="knd-home-card-header">
-                    <Avatar
+                    <img
                       src={base.author.avatar}
                       alt=""
                       className="knd-home-card-avatar"
@@ -169,15 +168,17 @@ const KndDetail = () => {
                       {...(Boolean(options) ? { timeout: 1000 } : {})}
                     >
                       <div className="knd-home-card-btn-group">
+                      {localStorage.getItem('token_id_').split('$')[1] === base.author.id.toString() ? 
                         <button className="knd-home-card-btn" onClick={onClickRetrieveContent}>
                           {fields.button ? fields.button.update : ""}
-                        </button>
+                        </button> : null }
+                      {localStorage.getItem('token_id_').split('$')[1] === base.author.id.toString() ? 
                         <button className="knd-home-card-btn" onClick={onClickDestroyContent}>
                           {fields.button ? fields.button.delete : ""}
-                        </button>
+                        </button> : null }
                         <button className="knd-home-card-btn">
                           {fields.button ? fields.button.report : ""}
-                        </button>
+                        </button> 
                       </div>
                     </Grow>
                   ) : null}
@@ -205,7 +206,7 @@ const KndDetail = () => {
                     <div className="knd-home-card-actions-face">
                       {_.map(base.like, (baseLikes, indexLikes) => (
                         <div key={indexLikes}>
-                          <Avatar
+                          <img
                             src={baseLikes.author.avatar}
                             className="knd-home-card-actions-face-avatar"
                           />
@@ -247,7 +248,7 @@ const KndDetail = () => {
                   {_.map(base.comment, (baseComs, indexComs) => (
                     <div className="knd-home-card-comment" key={indexComs}>
                       <div className="knd-home-card-comment-header">
-                        <Avatar
+                        <img
                           src={baseComs.author.avatar}
                           className="knd-home-card-comment-avatar"
                         />
@@ -258,6 +259,7 @@ const KndDetail = () => {
                         </a>
                         <div className="knd-push"></div>
                         {commentX.loading !== baseComs.id ? (
+                          localStorage.getItem('token_id_').split('$')[1] === baseComs.author.id.toString() ? 
                           <button
                             className="knd-home-card-comment-btn"
                             onClick={onClickDestroyComments.bind(
@@ -266,7 +268,7 @@ const KndDetail = () => {
                             )}
                           >
                             <i className="fas fa-trash"></i>
-                          </button>
+                          </button> : null 
                         ) : (
                           <div className="knd-home-card-comment-btn-loader">
                             <i className="fas fa-dot-circle"></i>

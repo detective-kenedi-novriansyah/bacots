@@ -19,6 +19,7 @@ export interface Comment {
 
 export interface Content {
     id?: number;
+    public_id?: string;
     description?: string;
     create_at?: Moment;
     update_at?: Moment;
@@ -32,13 +33,25 @@ export interface Content {
 export interface User {
     id?: number
     username?: string;
+    username_validate?: string;
+    email_validate?: string
+    old_email?: string;
+    new_email?: string;
     email?: string;
     first_name?: string;
     last_name?: string;
+    first_name_validate?: string;
+    last_name_validate?: string;
     token?: string;
     password?: string;
+    old_password?: string;
+    new_password?: string;
     confirm_password?: string;
+    password_validate?: string;
     password_regex?: string;
+    old_password_validate?: string;
+    new_password_validate?: string;
+    confirm_password_validate?: string;
 }
 
 
@@ -54,6 +67,40 @@ export interface Authenticate {
     create_at?: Moment;
     update_at?: Moment;
     user?: User
+}
+
+export interface Likes {
+    id?: number;
+    info_likes?: string;
+    author?: Authenticate;
+    create_at?: Moment;
+    update_at?: Moment;
+    bacot_default?: Content;
+}
+
+export interface Comment {
+    id?: number;
+    comment?: string;
+    info_comment?: string;
+    author?: Authenticate;
+    create_at?: Moment;
+    update_at?: Moment;
+    bacot_default?: Content;
+}
+
+export interface Composite {
+    id?: number;
+    likes?: Likes;
+    comments?: Comment;
+    create_at?: Moment;
+    update_at?: Moment;
+}
+
+export interface Notification {
+    public_id?: string;
+    author?: Authenticate;
+    notifications?: string;
+    info?: Composite[];
 }
 
 export interface Schema {
@@ -87,6 +134,16 @@ export interface Schema {
         like?: string;
         report?: string;
         back?: string;
+        edit?: string;
+        settings?: string;
+        logout?: string;
+        edit_profile?: string;
+        change_email?: string;
+        change_password?: string;
+        change_privasi?: string;
+        save?: string;
+        personal_information?: string;
+        forgot_user?: string;
     }
     validate?: {
         validate_not_found?: string;
@@ -145,3 +202,11 @@ export interface DestroyCommentDetail {
     loading: number;
     detail: boolean
 }
+
+export interface ChangeSecurityState {
+    old_password: string;
+    password: string;
+    confirm_password: string;
+}
+
+export type  RetrieveUser = Pick<User, "username" | "email" | "password" | "id">
