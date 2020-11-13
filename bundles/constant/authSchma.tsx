@@ -1,4 +1,4 @@
-import { Authenticate, Notification, Content, Message } from "./interface";
+import { Authenticate, Notification, Content, Message, Follow, ChoiceFollow } from "./interface";
 
 export enum AuthTypes {
     IS_AUTHENTICATE = 'IS_AUTHENTICATE',
@@ -10,7 +10,10 @@ export enum AuthTypes {
     DESTROY_CONTENT = "DESTROY_CONTENT",
     RETRIEVE_CONTENT = "RETRIEVE_CONTENT",
     OPEN_DIALOG_NOTIFICATION = "OPEN_DIALOG_NOTIFICATION",
-    RETRIEVE_AUTH = "RETRIEVE_AUTH"
+    RETRIEVE_AUTH = "RETRIEVE_AUTH",
+    FOLLOW_AUTH = "FOLLOW_AUTH",
+    SHOW_FOLLOW = "SHOW_FOLLOW",
+    HIDE_FOLLOW = "HIDE_FOLLOW"
 }
 
 export interface AuthState {
@@ -19,6 +22,8 @@ export interface AuthState {
     readonly content: Content[];
     readonly notification: Notification
     readonly is_authenticate: Authenticate;
+    readonly is_active_follow: boolean;
+    readonly choiceFollow: ChoiceFollow;
     readonly validate: boolean;
     readonly is_open_notification: boolean;
     readonly message: Message;

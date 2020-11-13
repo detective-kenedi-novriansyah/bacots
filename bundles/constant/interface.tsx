@@ -67,6 +67,9 @@ export interface Authenticate {
     create_at?: Moment;
     update_at?: Moment;
     user?: User
+    follow_default?: Follow
+    followers_count?: number;
+    followed_count?: string;
 }
 
 export interface Likes {
@@ -115,6 +118,14 @@ export interface Report {
     unfollow?: string | number;
 }
 
+export interface Follow {
+    id?: number;
+    create_at?: Moment;
+    update_at?: string;
+    followers?: Authenticate[];
+    followed?: Authenticate[];
+}
+
 export interface Schema {
     auth?: Authenticate;
     button?: {
@@ -157,6 +168,9 @@ export interface Schema {
         personal_information?: string;
         forgot_user?: string;
         submit?: string;
+        follow?: string;
+        followers?: string;
+        followed?: string;
     }
     validate?: {
         validate_not_found?: string;
@@ -230,3 +244,13 @@ export interface ChangeSecurityState {
 }
 
 export type  RetrieveUser = Pick<User, "username" | "email" | "password" | "id">
+
+export interface FollowState {
+    followers?: number;
+    user?: string;
+}
+
+export interface ChoiceFollow {
+    followers: boolean;
+    followed: boolean;
+}

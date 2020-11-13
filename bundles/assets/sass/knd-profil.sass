@@ -3,6 +3,22 @@ $base-color-red: #f20c0c
 $box-shadow-btn: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149)
 $box-shadow-card: 0px 10px 1px #ddd, 0 10px 20px #ccc
 $font-text: "Segoe UI", Meiryo, system-ui, -apple-system, BlinkMacSystemFont, sans-serif
+$base-color: #7d686b
+$awesome-font-size-text-small: 12px
+$awesome-font-size-text: 14px
+$awesome-font-size-medium: 16px
+$awesome-font-size-big: 18px
+$awesome-font-weight-text-1: 100
+$awesome-font-weight-text-2: 200
+$awesome-font-weight-text-3: 300
+$awesome-font-weight-text-4: 400
+$awesome-font-weight-text-5: 500
+$awesome-font-weight-text: 600
+$awesome-border-radius-button: 10px
+$awesome-font-color-text: #4d5156
+$aweomse-font-family-text: Roboto,arial,sans-serif
+$awesome-button-box: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149)
+$awesome-card-box: 0px 10px 1px #ddd, 0 10px 20px #ccc
 
 .knd-profile
     header
@@ -73,6 +89,60 @@ $font-text: "Segoe UI", Meiryo, system-ui, -apple-system, BlinkMacSystemFont, sa
             #knd-home-card-max-width
                 width: 100% !important
 
+.knd-profile-follow-x
+    margin-top: 0.50rem
+    margin-bottom: 0.50rem
+    .knd-profile-follow-btn
+        border: 2px solid $base-color
+        box-shadow: $awesome-button-box
+        border-radius: $awesome-border-radius-button
+        width: 60%
+        display: block
+        margin-left: auto
+        margin-right: auto
+        font-size: $awesome-font-size-text
+        font-weight: $awesome-font-weight-text
+        font-family: $aweomse-font-family-text
+        padding-top: 0.25rem
+        padding-bottom: 0.25rem
+        color: $base-color
+        outline: none
+    .knd-profil-follow
+        margin-top: 0.25rem
+        display: flex
+        align-items: center
+        justify-content: center
+        flex-direction: row
+        .knd-profile-follow-group
+            display: flex
+            align-items: center
+            flex-direction: row
+            box-shadow: $awesome-button-box
+            padding: 0.25rem
+            border-radius: $awesome-border-radius-button
+            margin-left: 0.50rem
+            margin-right: 0.50rem
+            cursor: pointer
+            span
+                padding-left: 0.35rem
+                padding-right: 0.35rem
+                height: 100%
+            button
+                padding-left: 0.75rem
+                padding-right: 0.75rem
+                padding-top: 0.25rem
+                padding-bottom: 0.25rem
+                border-radius: $awesome-border-radius-button
+                box-shadow: $awesome-button-box
+                background-color: $base-color
+                color: #ffffff
+                font-family: $aweomse-font-family-text
+                font-weight: $awesome-font-weight-text
+                margin-left: 0.25rem
+                margin-right: 0.25rem
+                outline: none
+
+
 @media screen and ( min-width: 768px )
     .knd-profil
         position: sticky
@@ -108,3 +178,68 @@ $font-text: "Segoe UI", Meiryo, system-ui, -apple-system, BlinkMacSystemFont, sa
 #retrieve-description-label
     font-weight: 700 !important
     color: $base-color !important
+
+@media screen and ( max-width: 945px )
+    .knd-profile-follow-btn
+        width: 80% !important
+
+// Followers
+.knd-dialog-follow
+    display: flex
+    align-items: center
+    justify-content: space-between
+    flex-direction: row
+    
+    .knd-dialog-follow-closed
+        width: 45px
+        height: 45px
+        box-shadow: $awesome-button-box
+        border-radius: $awesome-border-radius-button
+        outline: none
+
+    .knd-dialog-follow-title
+        font-size: $awesome-font-size-big
+        font-weight: $awesome-font-weight-text
+        font-family: $aweomse-font-family-text
+        color: $base-color
+
+.knd-dialog-follow-content
+    overflow-y: auto
+    overflow-x: hidden
+    max-height: 460px
+    width: 460px
+
+    .knd-dialog-follow-headers
+        margin-bottom: 0.50rem
+        padding: 0.25rem
+        border-radius: $awesome-border-radius-button
+        box-shadow: $awesome-button-box
+        width: 100%
+        .knd-dialog-follow-headers-group
+            display: flex
+            align-items: center
+            flex-direction: row
+            .knd-dialog-follow-headers-avatar
+                width: 35px
+                height: 35px
+                border-radius: $awesome-border-radius-button
+                box-shadow: $awesome-button-box
+            .knd-dialog-follow-headers-nickname
+                margin-left: 0.25rem
+                color: $base-color
+                font-size: $awesome-font-size-text
+                font-family: $aweomse-font-family-text
+                font-weight: $awesome-font-weight-text
+        .knd-dialog-follow-headers-btn
+            width: 100%
+            padding-top: 0.25rem
+            padding-bottom: 0.25rem
+            border-radius: $awesome-border-radius-button
+            box-shadow: $awesome-button-box
+            color: #ffffff
+            margin-top: 0.35rem
+            background-color: $base-color
+            font-family: $aweomse-font-family-text
+            font-size: $awesome-font-size-text
+            font-weight: $awesome-font-weight-text                
+

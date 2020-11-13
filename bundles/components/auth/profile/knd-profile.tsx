@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router-dom'
-import { detailAuth } from '../../../actions/authActions'
+import { detailAuth, openDialogFollow, requestFollow } from '../../../actions/authActions'
 import { ApplicationState } from '../../../configureStore'
 import KndCard from '../../home/knd-card'
 
@@ -11,7 +11,11 @@ const KndProfile: React.FunctionComponent = () => {
     const location = useLocation()
     const fields = useSelector((state: ApplicationState) => state.schema.schema)
     const is_authenticate = useSelector((state: ApplicationState) => state.auth.data)
+    const is_active = useSelector((state: ApplicationState) => state.auth.is_active_follow)
     const content = useSelector((state: ApplicationState) => state.auth.content)
+
+    const follow = fields.button ? fields.button.follow : ''
+    const message = fields.button ? "Message" : ''
 
     React.useEffect(() => {
         let mounted = true
@@ -27,6 +31,24 @@ const KndProfile: React.FunctionComponent = () => {
     const handleClickMove = (newValue: string) => {
         history.push(newValue)
     }
+
+    const onClickFollower = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault()
+        const data = {
+            user: localStorage.getItem('token_id').split('$')[1] as string,
+            followers: is_authenticate.id
+        }
+        dispatch(requestFollow(data))
+    }
+
+    const handleClickShowFollow = (e: string) => {
+        const data = {
+            followers: e === "followers" ? true : false,
+            followed: e === "followed" ? true : false
+        }
+        dispatch(openDialogFollow(data))
+    }
+
     return (
         <div className="knd-profile">
             <header>
@@ -45,10 +67,29 @@ const KndProfile: React.FunctionComponent = () => {
                             <a href="" className="knd-profil-author-nickname">
                                 {is_authenticate.user.first_name}
                             </a>
-                            <div className="knd-push"></div>
-                            <button>
-                                <i className="fas fa-ellipsis-h"></i>
+                        </div>
+                        <div className="knd-profile-follow-x">
+                            <button className="knd-profile-follow-btn" onClick={onClickFollower}>
+                                {is_active ? message : follow}
                             </button>
+                            <div className="knd-profil-follow">
+                                <div className="knd-profile-follow-group">
+                                    <span>
+                                        {is_authenticate.followers_count}
+                                    </span>
+                                    <button onClick={handleClickShowFollow.bind('', 'followers')}>
+                                        {fields.button ? fields.button.followers : ''}
+                                    </button>
+                                </div>
+                                <div className="knd-profile-follow-group">
+                                    <span>
+                                        {is_authenticate.followed_count}
+                                    </span>
+                                    <button onClick={handleClickShowFollow.bind('','followed')}>
+                                        {fields.button ? fields.button.followed : ''}
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

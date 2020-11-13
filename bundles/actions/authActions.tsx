@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from 'axios'
 import { History } from 'history'
 import { Dispatch } from 'redux'
 import { AuthTypes } from '../constant/authSchma'
+import { ChoiceFollow, FollowState } from '../constant/interface'
 
 export const isAuthenticate = () => {
     return async (dispatch: Dispatch) => {
@@ -76,7 +77,8 @@ export const detailAuth = (newValue: string, history: History) => {
                 type: AuthTypes.DETAIL_AUTH,
                 payload: {
                     data: res.data.authenticate,
-                    content: res.data.content
+                    content: res.data.content,
+                    is_active_follow: res.data.active
                 }
             })
             history.push({
@@ -155,6 +157,65 @@ export const retrieveAuth = (pk: number,data: FormData,setLoading: React.Dispatc
                     }
                 })
                 setLoading(false)
+            }
+        })
+        return response
+    }
+}
+
+
+export const requestFollow = (data: FollowState) => {
+    return async (dispatch: Dispatch) => {
+        const response = await axios.post('api/v1/follow/', data, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Headers': 'Content-Type, Origin, Accepted, X-Requested-With, Authorization',
+                'Access-Control-Allow-Methods': 'POST',
+                'Access-Control-Allow-Origin': '*',
+                'Authorization': `Token ${localStorage.getItem('token')}`
+            },
+            timeout: 865000,
+            responseType: 'json',
+            withCredentials: false,
+            maxRedirects: 5,
+            maxContentLength: 2000,
+            validateStatus: (status: number) => status >= 201 && status < 300
+        }).then((res: AxiosResponse<any>) => {
+            dispatch({
+                type: AuthTypes.FOLLOW_AUTH,
+                payload: {
+                    data: res.data.authenticate,
+                    validate: true,
+                    message: {
+                        message: res.data.message,
+                        validate: true
+                    }
+                }
+            })
+        }).catch((err: any) => {
+            if(err.response.data) {
+                dispatch({
+                    type: AuthTypes.FAILURE_AUTH,
+                    payload: {
+                        validate: true,
+                        message: {
+                            message: err.response.data.message ? err.response.data.message : err.response.daa.detail,
+                            validate: false
+                        }
+                    }
+                })
+            }
+        })
+        return response
+    }
+}
+
+export const openDialogFollow = (choice: ChoiceFollow) => {
+    return async (dispatch: Dispatch) => {
+        const response = await dispatch({
+            type: AuthTypes.SHOW_FOLLOW,
+            payload: {
+                choiceFollow: choice
             }
         })
         return response

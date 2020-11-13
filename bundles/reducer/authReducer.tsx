@@ -6,8 +6,13 @@ const initialState: AuthState = {
     data: {},
     content: [],
     notification: {},
+    choiceFollow: {
+        followed: false,
+        followers: false
+    },
     is_open_notification: false,
     is_authenticate: {},
+    is_active_follow: false,
     validate: false,
     message: {}
 }
@@ -39,7 +44,8 @@ export const authReducer: Reducer<AuthState> = (state = initialState,action) => 
             return {
                 ...state,
                 data: action.payload.data,
-                content: action.payload.content
+                content: action.payload.content,
+                is_active_follow: action.payload.is_active_follow
             }
             break
         case AuthTypes.FAILURE_AUTH:
@@ -81,6 +87,26 @@ export const authReducer: Reducer<AuthState> = (state = initialState,action) => 
                 validate: action.payload.validate,
                 is_authenticate: action.payload.is_authenticate,
                 message: action.payload.message
+            }
+            break
+        case AuthTypes.FOLLOW_AUTH:
+            return {
+                ...state,
+                data: action.payload.data,
+                validate: action.payload.validate,
+                message: action.payload.message
+            }
+            break
+        case AuthTypes.SHOW_FOLLOW:
+            return {
+                ...state,
+                choiceFollow: action.payload.choiceFollow
+            }
+            break
+        case AuthTypes.HIDE_FOLLOW:
+            return {
+                ...state,
+                choiceFollow: action.payload.choiceFollow
             }
             break
         default:
