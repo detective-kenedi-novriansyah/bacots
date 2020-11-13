@@ -13,6 +13,7 @@ import "./assets/sass/knd-profil.sass"
 import "./assets/sass/knd-navbar.sass"
 import "./assets/sass/knd-dropdown.sass"
 import "./assets/sass/knd-settings.sass"
+import "./assets/sass/knd-report.sass"
 import "flexboxgrid/dist/flexboxgrid.min.css"
 import configureStore, { history } from './configureStore'
 import Routes from './routes'

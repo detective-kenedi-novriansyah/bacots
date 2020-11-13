@@ -103,6 +103,18 @@ export interface Notification {
     info?: Composite[];
 }
 
+export interface Choice {
+    number?: number;
+    name?: string;
+}
+
+export interface Report {
+    id?: number;
+    choice?: string | number;
+    block?: string | number;
+    unfollow?: string | number;
+}
+
 export interface Schema {
     auth?: Authenticate;
     button?: {
@@ -144,12 +156,20 @@ export interface Schema {
         save?: string;
         personal_information?: string;
         forgot_user?: string;
+        submit?: string;
     }
     validate?: {
         validate_not_found?: string;
     }
     bacot?: {
         description?: string;
+    }
+    report?: {
+        choice?: Choice[],
+        block?: string;
+        unfollow?: string;
+        title?: string;
+        done_title?: string;
     }
 }
 

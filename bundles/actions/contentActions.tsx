@@ -573,3 +573,17 @@ export const destroyComment = (pk: number,comments: DestroyCommentDetail, setCom
         return response
     }
 }
+
+export const openDialogReport = (content: Content, active: boolean) => {
+    return async (dispatch: Dispatch) => {
+        const response = await dispatch({
+            type: ContentTypes.DIALOG_REPORT,
+            payload: {
+                openDialogReport: true,
+                detail: content,
+                activeReport: active
+            }
+        })
+        return response
+    }
+}

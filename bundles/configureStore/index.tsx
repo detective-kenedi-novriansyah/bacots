@@ -9,6 +9,7 @@ import { SchemaState } from '../constant/schemaTypes'
 import { UserState } from '../constant/userSchema'
 import { AuthState } from '../constant/authSchma'
 import { ContentState } from '../constant/contentSchema'
+import { ReportState } from '../constant/reportSchema'
 
 export const history = createBrowserHistory();
 
@@ -18,6 +19,7 @@ export interface ApplicationState {
     user: UserState;
     auth: AuthState;
     content: ContentState
+    report: ReportState
 }
 
 export default function configureStore(preloadedState?: any) {

@@ -11,6 +11,7 @@ import {
   detailContent,
   contentOpenDialogDestroy,
   contentOpenDialogRetrieve,
+  openDialogReport,
 } from "../../actions/contentActions";
 import {
   CommentContent,
@@ -26,7 +27,7 @@ interface KndCardProps {
 }
 
 const KndCard: React.FunctionComponent<KndCardProps> = (props: React.PropsWithChildren<KndCardProps>) => {
-
+  const is_active = localStorage.getItem('token_id') ? localStorage.getItem('token_id_').split('$')[1] : ''
   let choice: boolean = false;
   if(window.location.pathname === "/profile") {
     choice = true
@@ -120,6 +121,11 @@ const KndCard: React.FunctionComponent<KndCardProps> = (props: React.PropsWithCh
     dispatch(detailAuth(newValue,history))
   }
 
+  const onClickReport = (content: Content) => {
+    setOptions(-1)
+    dispatch(openDialogReport(content,false))
+  }
+
   return (
     <section>
       {_.map(content, (base, index) => {
@@ -155,17 +161,18 @@ const KndCard: React.FunctionComponent<KndCardProps> = (props: React.PropsWithCh
                 {...(Boolean(options) ? { timeout: 1000 } : {})}
               >
                 <div className="knd-home-card-btn-group">
-                  {localStorage.getItem('token_id_').split('$')[1] === base.author.id.toString() ? 
+                  {is_active === base.author.id.toString() ? 
                   <button className="knd-home-card-btn" onClick={onClickShowDialogRetrieve.bind(base,base.id)}>
                     {fields.button ? fields.button.update : ""}
                   </button> : null }
-                  {localStorage.getItem('token_id_').split('$')[1] === base.author.id.toString() ? 
+                  {is_active === base.author.id.toString() ? 
                   <button className="knd-home-card-btn" onClick={onClickShowDialogDestroy.bind(base,base.id)}>
                     {fields.button ? fields.button.delete : ""}
                   </button> : null }
-                  <button className="knd-home-card-btn">
+                  {is_active !== base.author.id.toString() ? 
+                  <button className="knd-home-card-btn" onClick={onClickReport.bind(base,base)}>
                     {fields.button ? fields.button.report : ""}
-                  </button>
+                  </button> : null }
                 </div>
               </Grow>
             ) : null}
@@ -248,7 +255,7 @@ const KndCard: React.FunctionComponent<KndCardProps> = (props: React.PropsWithCh
                     </a>
                     <div className="knd-push"></div>
                     {commentX.loading !== baseComs.id ? (
-                      localStorage.getItem('token_id_').split('$')[1] === baseComs.author.id.toString() ? 
+                      is_active === baseComs.author.id.toString() ? 
                       <button
                         className="knd-home-card-comment-btn"
                         onClick={onClickDestroyComments.bind(

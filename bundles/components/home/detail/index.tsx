@@ -7,6 +7,7 @@ import {
   contentDetailOpenDialogRetrieve,
   destroyComment,
   fetchDetailContent,
+  openDialogReport,
   recordComment,
   requestLikesContent,
 } from "../../../actions/contentActions";
@@ -22,6 +23,7 @@ import {
 import { detailAuth } from "../../../actions/authActions";
 
 const KndDetail = () => {
+  const is_active = localStorage.getItem('token_id') ? localStorage.getItem('token_id_').split('$')[1] : ''
   const dispatch = useDispatch();
   const fields = useSelector((state: ApplicationState) => state.schema.schema);
   const history = useHistory()
@@ -117,10 +119,17 @@ const KndDetail = () => {
   }
 
   const onClickProfile = (newValue: string) => {
+    setOptions(false)
     dispatch(detailAuth(newValue,history))
   }
 
   let patterns = `knd-comments-${base.id ? base.id : 0}`
+
+  const onClickReport = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    setOptions(false)
+    dispatch(openDialogReport(base,true))
+  }
 
   return (
     <section>
@@ -168,17 +177,18 @@ const KndDetail = () => {
                       {...(Boolean(options) ? { timeout: 1000 } : {})}
                     >
                       <div className="knd-home-card-btn-group">
-                      {localStorage.getItem('token_id_').split('$')[1] === base.author.id.toString() ? 
+                      {is_active === base.author.id.toString() ? 
                         <button className="knd-home-card-btn" onClick={onClickRetrieveContent}>
                           {fields.button ? fields.button.update : ""}
                         </button> : null }
-                      {localStorage.getItem('token_id_').split('$')[1] === base.author.id.toString() ? 
-                        <button className="knd-home-card-btn" onClick={onClickDestroyContent}>
+                      {is_active === base.author.id.toString() ? 
+                        <button className="knd-home-card-btn" onClick={onClickDestroyContent} id="knd-home-card-btn-delete">
                           {fields.button ? fields.button.delete : ""}
                         </button> : null }
-                        <button className="knd-home-card-btn">
+                      {is_active !== base.author.id.toString() ? 
+                        <button className="knd-home-card-btn" onClick={onClickReport}>
                           {fields.button ? fields.button.report : ""}
-                        </button> 
+                        </button> : null }
                       </div>
                     </Grow>
                   ) : null}
@@ -259,7 +269,7 @@ const KndDetail = () => {
                         </a>
                         <div className="knd-push"></div>
                         {commentX.loading !== baseComs.id ? (
-                          localStorage.getItem('token_id_').split('$')[1] === baseComs.author.id.toString() ? 
+                          is_active === baseComs.author.id.toString() ? 
                           <button
                             className="knd-home-card-comment-btn"
                             onClick={onClickDestroyComments.bind(

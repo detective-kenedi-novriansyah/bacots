@@ -7,7 +7,9 @@ const initialState: ContentState = {
     softDetail: false,
     validate: false,
     message: {},
+    activeReport: false,
     openDialog: false,
+    openDialogReport: false,
     loadingScreen: true,
     openRetrieveDialog: false
 }
@@ -62,7 +64,8 @@ export const contentReducer: Reducer<ContentState> = (state = initialState, acti
             return {
                 ...state,
                 openDialog: action.payload.openDialog,
-                openRetrieveDialog: action.payload.openRetrieveDialog
+                openRetrieveDialog: action.payload.openRetrieveDialog,
+                openDialogReport: action.payload.openDialogReport
             }
             break
         case ContentTypes.RETRIEVE_CONTENT:
@@ -118,6 +121,14 @@ export const contentReducer: Reducer<ContentState> = (state = initialState, acti
             return {
                 ...state,
                 detail: action.payload.detail,
+            }
+            break
+        case ContentTypes.DIALOG_REPORT:
+            return {
+                ...state,
+                openDialogReport: action.payload.openDialogReport,
+                detail: action.payload.detail,
+                activeReport: action.payload.activeReport
             }
             break
         default:

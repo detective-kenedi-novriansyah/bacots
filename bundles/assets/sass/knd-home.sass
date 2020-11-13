@@ -189,11 +189,19 @@ body
                 color: red
                 border-left: 2px solid red
                 border-right: 2px solid red
+                
+            &:not(:first-child)
+                color: red 
+                border-left: 2px solid red 
+                border-right: 2px solid red 
 
             &:first-child
                 color: $base-color
                 border-left: 2px solid $base-color
                 border-right: 2px solid $base-color
+                margin-left: 0.45rem
+                margin-right: 0.45rem
+                color: black
     
     .knd-home-card-content
         word-wrap: break-word

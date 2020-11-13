@@ -1,0 +1,184 @@
+$base-color: #7d686b
+$awesome-font-size-text-small: 12px
+$awesome-font-size-text: 14px
+$awesome-font-size-medium: 16px
+$awesome-font-size-big: 18px
+$awesome-font-weight-text-1: 100
+$awesome-font-weight-text-2: 200
+$awesome-font-weight-text-3: 300
+$awesome-font-weight-text-4: 400
+$awesome-font-weight-text-5: 500
+$awesome-font-weight-text: 600
+$awesome-border-radius-button: 10px
+$awesome-font-color-text: #4d5156
+$aweomse-font-family-text: Roboto,arial,sans-serif
+$awesome-button-box: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149)
+$awesome-card-box: 0px 10px 1px #ddd, 0 10px 20px #ccc
+
+.knd-report
+    .knd-report-closed
+        display: flex
+        justify-content: flex-end
+        button
+            width: 30px
+            height: 30px
+            text-align: center
+            border-radius: $awesome-border-radius-button
+            box-shadow: $awesome-button-box
+            background-color: $base-color
+            color: #ffffff
+            outline: none
+    .knd-report-header
+        margin-top: 0.50rem
+        margin-bottom: 0.50rem
+        padding-left: 0.50rem
+        padding-right: 0.50rem
+        font-family: $aweomse-font-family-text
+        font-size: $awesome-font-size-big
+        font-weight: $awesome-font-weight-text
+        text-transform: capitalize
+    .knd-report-description
+        .knd-report-description-text
+            display: -webkit-box
+            -webkit-box-orient: vertical
+            -webkit-line-clamp: 4
+            overflow: hidden
+            animation-duration: 3
+            animation-iteration-count: infinite
+            p
+                font-family: $aweomse-font-family-text
+                font-size: $awesome-font-size-text
+        .knd-report-content
+            display: flex
+            flex-direction: column
+            margin-bottom: 0.75rem
+            .knd-report-table
+                .knd-report-button-active
+                    color: #ffffff
+                    background-color: red
+                    margin-bottom: 0.15rem
+                    margin-top: 0.15rem
+                    padding-left: 0.75rem
+                    padding-right: 0.75rem
+                    padding-top: 0.25rem
+                    padding-bottom: 0.25rem
+                    border-radius: $awesome-border-radius-button
+                    box-shadow: $awesome-button-box
+                    font-family: $aweomse-font-family-text
+                    font-size: $awesome-font-size-text
+                    font-weight: $awesome-font-weight-text
+                    outline: none
+                .knd-report-button
+                    margin-bottom: 0.15rem
+                    margin-top: 0.15rem
+                    padding-left: 0.75rem
+                    padding-right: 0.75rem
+                    padding-top: 0.25rem
+                    padding-bottom: 0.25rem
+                    border-radius: $awesome-border-radius-button
+                    box-shadow: $awesome-button-box
+                    font-family: $aweomse-font-family-text
+                    font-size: $awesome-font-size-text
+                    font-weight: $awesome-font-weight-text
+                    outline: none
+    .knd-report-author
+        .knd-report-author-group
+            display: flex
+            align-items: center
+            flex-direction: row
+            margin-bottom: 0.50rem
+            margin-top: 0.50rem
+            cursor: pointer
+            .knd-report-author-avatar
+                width: 40px
+                height: 40px
+                background-size: contain
+                background-position: center
+                background-repeat: no-repeat
+                border-radius: $awesome-border-radius-button
+                box-shadow: $awesome-button-box
+                margin-right: 0.50rem
+            a
+                color: $base-color
+                font-size: $awesome-font-size-text
+                font-weight: $awesome-font-weight-text
+                font-family: $aweomse-font-family-text
+        .knd-report-actions
+            display: flex
+            align-items: center
+            .knd-report-actions-btn-active
+                padding-left: 0.75rem
+                padding-right: 0.75rem
+                padding-top: 0.25rem
+                padding-bottom: 0.25rem
+                border-radius: $awesome-border-radius-button
+                box-shadow: $awesome-button-box
+                font-family: $aweomse-font-family-text
+                font-size: $awesome-font-size-text
+                font-weight: $awesome-font-weight-text
+                outline: none
+                color: #ffffff
+                background-color: red
+                &:first-child
+                    margin-right: 0.25rem
+            .knd-report-actions-btn
+                padding-left: 0.75rem
+                padding-right: 0.75rem
+                padding-top: 0.25rem
+                padding-bottom: 0.25rem
+                border-radius: $awesome-border-radius-button
+                box-shadow: $awesome-button-box
+                font-family: $aweomse-font-family-text
+                font-size: $awesome-font-size-text
+                font-weight: $awesome-font-weight-text
+                outline: none
+                &:first-child
+                    margin-right: 0.25rem
+    .knd-report-actions-footer
+        margin-top: 0.75rem
+        .knd-report-actions-footer-btn
+            padding-top: 0.25rem
+            padding-bottom: 0.25rem
+            padding-left: 0.75rem
+            padding-right: 0.75rem
+            width: 260px
+            text-align: center
+            font-family: $aweomse-font-family-text
+            font-size: $awesome-font-size-text
+            font-weight: $awesome-font-weight-text
+            box-shadow: $awesome-button-box
+            border-radius: $awesome-border-radius-button
+            color: #ffffff
+            background-color: $base-color
+            outline: none
+
+        progress
+            display: block
+
+            /* default: inline-block
+            width: 300px
+            margin: 2em auto
+            padding: 4px
+            border: 0 none
+            background: #444
+            border-radius: 14px
+            box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2)
+
+            &::-moz-progress-bar
+                border-radius: 12px
+                background: #FFF
+                box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.4), 0 2px 5px 0px rgba(0, 0, 0, 0.3)
+
+            &::-webkit-progress-bar
+                background: transparent
+
+            &::-webkit-progress-value
+                border-radius: 12px
+                background: #FFF
+                box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.4), 0 2px 5px 0px rgba(0, 0, 0, 0.3)
+
+@media screen and ( max-width: 359px )
+    .knd-report-actions-footer
+        .knd-report-actions-footer-btn
+            width: 180px !important
+    
