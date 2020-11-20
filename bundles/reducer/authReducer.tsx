@@ -5,7 +5,7 @@ const initialState: AuthState = {
     auth: [],
     data: {},
     content: [],
-    notification: {},
+    detail: {},
     choiceFollow: {
         followed: false,
         followers: false
@@ -13,8 +13,11 @@ const initialState: AuthState = {
     is_open_notification: false,
     is_authenticate: {},
     is_active_follow: false,
+    is_auth_active: false,
     validate: false,
-    message: {}
+    message: {},
+    openDrawerAuth: false,
+    openDialogAuth: false
 }
 
 export const authReducer: Reducer<AuthState> = (state = initialState,action) => {
@@ -23,7 +26,7 @@ export const authReducer: Reducer<AuthState> = (state = initialState,action) => 
             return {
                 ...state,
                 is_authenticate: action.payload.is_authenticate,
-                notification: action.payload.notification
+                is_auth_active: action.payload.is_auth_active
             }
             break;
         case AuthTypes.EXPIRES_TOKEN:
@@ -37,7 +40,7 @@ export const authReducer: Reducer<AuthState> = (state = initialState,action) => 
             return {
                 ...state,
                 validate: action.payload.validate,
-                is_open_notification: action.payload.is_open_notification
+                is_open_notification: action.payload.is_open_notification,
             }
             break
         case AuthTypes.DETAIL_AUTH:
@@ -45,7 +48,8 @@ export const authReducer: Reducer<AuthState> = (state = initialState,action) => 
                 ...state,
                 data: action.payload.data,
                 content: action.payload.content,
-                is_active_follow: action.payload.is_active_follow
+                is_active_follow: action.payload.is_active_follow,
+                is_auth_active: action.payload.is_auth_active
             }
             break
         case AuthTypes.FAILURE_AUTH:
@@ -93,8 +97,10 @@ export const authReducer: Reducer<AuthState> = (state = initialState,action) => 
             return {
                 ...state,
                 data: action.payload.data,
+                is_active_follow: action.payload.is_active_follow,
                 validate: action.payload.validate,
-                message: action.payload.message
+                message: action.payload.message,
+                is_auth_active: action.payload.is_auth_active
             }
             break
         case AuthTypes.SHOW_FOLLOW:
@@ -107,6 +113,34 @@ export const authReducer: Reducer<AuthState> = (state = initialState,action) => 
             return {
                 ...state,
                 choiceFollow: action.payload.choiceFollow
+            }
+            break
+        case AuthTypes.FETCH_AUTH:
+            return {
+                ...state,
+                auth: action.payload.auth,
+                openDrawerAuth: action.payload.openDrawerAuth,
+                detail: action.payload.detail,
+                openDialogAuth: action.payload.openDialogAuth
+            }
+            break
+        case AuthTypes.CLOSE_DRAWER:
+            return {
+                ...state,
+                openDrawerAuth: action.payload.openDrawerAuth,
+                openDialogAuth: action.payload.openDialogAuth
+            }
+            break
+        case AuthTypes.FILTER_AUTH:
+            return {
+                ...state,
+                auth: action.payload.auth,
+            }
+            break
+        case AuthTypes.DETAIL_F_AUTH:
+            return {
+                ...state,
+                detail: action.payload.detail
             }
             break
         default:

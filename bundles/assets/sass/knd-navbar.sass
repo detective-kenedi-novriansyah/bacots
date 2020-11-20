@@ -73,6 +73,7 @@ $awesome-card-box: 0px 10px 1px #ddd, 0 10px 20px #ccc
             margin-right: 0.25rem
             border-radius: 80%
             background-color: #ffffff
+            outline: none
 
 
     .knd-navbar-group-button-auth
@@ -81,21 +82,14 @@ $awesome-card-box: 0px 10px 1px #ddd, 0 10px 20px #ccc
         flex-direction: row
 
         .knd-navbar-button-auth
-            outline: none
+            padding-left: 0.50rem
+            padding-right: 0.50rem
             padding-top: 0.25rem
             padding-bottom: 0.25rem
-            padding-left: 0.75rem
-            padding-right: 0.75rem
-            background-color: $base-color
-            border-radius: 10px
-            color: #ffffff
-            box-shadow: $awesome-button-box
-            font-weight: bold
-            text-transform: capitalize
+            font-family: $aweomse-font-family-text
+            font-weight: $awesome-font-weight-text
+            font-size: $awesome-font-size-text
 
-            &:last-child
-                margin-left: 0.50rem
-                margin-right: 0.75rem
         img
             width: 40px
             height: 40px
@@ -235,3 +229,9 @@ $awesome-card-box: 0px 10px 1px #ddd, 0 10px 20px #ccc
         .knd-navbar-button-auth-x
             &:first-child
                 display: none
+
+@media screen and ( max-width: 352px )
+    .knd-navbar-group-button-auth
+        .knd-navbar-button-auth
+            display: none !important
+    

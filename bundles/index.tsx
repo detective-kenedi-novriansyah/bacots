@@ -14,6 +14,10 @@ import "./assets/sass/knd-navbar.sass"
 import "./assets/sass/knd-dropdown.sass"
 import "./assets/sass/knd-settings.sass"
 import "./assets/sass/knd-report.sass"
+import "./assets/sass/knd-drawer.sass"
+import "./assets/sass/knd-side-left.sass"
+import "./assets/sass/knd-legal.sass"
+import "./assets/sass/knd-form-auth.sass"
 import "flexboxgrid/dist/flexboxgrid.min.css"
 import configureStore, { history } from './configureStore'
 import Routes from './routes'

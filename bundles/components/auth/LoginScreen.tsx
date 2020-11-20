@@ -45,50 +45,35 @@ const LoginScreen: React.FunctionComponent = () => {
         }, 500);
     }
     return (
-        <section id="dkwqmkdqw">
-            <div id="col-1" className="flex items-center justify-center">
-                <form onSubmit={onSubmit}>
-                    <div className="field">
-                        <div className="control">
-                            <h1 id="title">
-                                {fields.button ? fields.button.title_login : ''}
-                            </h1>
-                        </div>
+        <section className="knd-x-form-x">
+            <form onSubmit={onSubmit} className="knd-x-form-register">
+                <div className="knd-form-x-t">
+                    <div className="knd-form-x-title">
+                        {fields.button ? fields.button.title_login : ''}
                     </div>
-                    <div className="field">
-                        <div className="control is-expanded">
-                            <Input type="text" placeholder={fields.auth ? fields.auth.user.username : ''} name="username" id="username" autoComplete="off" value={state.username} onChange={onChange}/>
-                        </div>
-                    </div>
-                    <div className="field">
-                        <div className="control is-expanded">
-                            <Input type="password" placeholder={fields.auth ? fields.auth.user.password : ''} name="password" id="password" autoComplete="off" value={state.password} onChange={onChange}/>
-                        </div>
-                    </div>
-                    <div className="field">
-                        <div className="control">
-                            <Button type="link" onClick={handleClickHistory.bind('','/forgot')}>
-                                {fields.button ? fields.button.forgot : ''}
-                            </Button>
-                        </div>
-                    </div>
-                    <div className="field has-addons flex items-center">
-                        <div className="control">
-                            <Button type="dashed" htmlType="submit" loading={state.loading}>
-                                {fields.button ? fields.button.login : ''}
-                            </Button>
-                        </div>
-                        <div className="control ml-2">
-                            <Button type="link" onClick={handleClickHistory.bind('','/signup')}>
-                                {fields.button ? fields.button.create_new_account : ''}
-                            </Button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div id="col" className="bg-white shadow">
-                dwqdqw
-            </div>
+                </div>
+                <div className="knd-x-form-field">
+                    <i className="fas fa-user-circle"></i>
+                    <input type="text" name="username" id="knd-form-username-field" className="knd-form-username-field" placeholder={fields.auth ? fields.auth.user.username : ''} value={state.username} onChange={onChange}/>
+                </div>
+                <div className="knd-x-form-field">
+                    <i className="fas fa-lock"></i>
+                    <input type="password" name="password" id="knd-form-password-field" className="knd-form-password-field" placeholder={fields.auth ? fields.auth.user.password : ''} value={state.password} onChange={onChange}/>
+                </div>
+                <div className="knd-x-form-field-button">
+                    <a onClick={handleClickHistory.bind('','/forgot')}>
+                        {fields.button ? fields.button.forgot : ''}
+                    </a>
+                </div>
+                <div className="knd-x-form-field-group">
+                    <button type="submit" disabled={state.loading}>
+                        {fields.button ? fields.button.login : ''}
+                    </button>
+                    <a onClick={handleClickHistory.bind('','/signup')}>
+                        {fields.button ? fields.button.create_new_account : ''}
+                    </a>
+                </div>
+            </form>
         </section>
     )
 }

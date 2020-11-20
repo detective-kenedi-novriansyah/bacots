@@ -66,69 +66,49 @@ const RegisterScreen: React.FunctionComponent = () => {
     }
 
     return (
-        <section id="dkwqmkdqw">
-            <div id="col-1" className="flex items-center justify-center">
-                <form onSubmit={onSubmit}>
-                    <div className="field">
-                        <div className="control">
-                            <h1 id="title">
-                                {fields.button ? fields.button.title_register : ''}
-                            </h1>
-                        </div>
+        <section className="knd-x-form-x">
+            <form onSubmit={onSubmit} className="knd-x-form-register">
+                <div className="knd-form-x-t">
+                    <div className="knd-form-x-title">
+                        {fields.button ? fields.button.title_register : ''}
                     </div>
-                    <div className="field">
-                        <div className="control">
-                            <h2 id="sub-title">
-                                {fields.button ? fields.button.child_title_register : ''}
-                            </h2>
-                        </div>
+                    <div className="knd-form-x-child-title">
+                        {fields.button ? fields.button.child_title_register : ''}
                     </div>
-                    <div className="field">
-                        <div className="control is-expanded">
-                            <Input type="text" placeholder={fields.auth ? fields.auth.user.username : ''} name="username" id="username" autoComplete="off" value={state.username} onChange={onChange}/>
-                        </div>
-                    </div>
-                    <div className="field">
-                        <div className="control is-expanded">
-                            <Input type="email" placeholder={fields.auth ? fields.auth.user.email : ''} name="email" id="email" autoComplete="off" value={state.email} onChange={onChange}/>
-                        </div>
-                    </div>
-                    <div className="field">
-                        <div className="control is-expanded">
-                            <Input type="password" placeholder={fields.auth ? fields.auth.user.password : ''} name="password" id="password" autoComplete="off" value={state.password} onChange={onChange}/>
-                        </div>
-                    </div>
-                    <div className="field">
-                        <div className="control">
-                            <div id="content-regex">
-                                <p className="text-sm font-sans">
-                                    {fields.auth ? fields.auth.user.password_regex : ''}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="field">
-                        <div className="control is-expanded">
-                            <Input type="password" placeholder={fields.auth ? fields.auth.user.confirm_password : ''} name="confirm_password" id="confirm_password" autoComplete="off" value={state.confirm_password} onChange={onChange}/>
-                        </div>
-                    </div>
-                    <div className="field has-addons flex items-center">
-                        <div className="control">
-                            <Button type="dashed" htmlType="submit" loading={state.loading}>
-                                {fields.button ? fields.button.register : ''}
-                            </Button>
-                        </div>
-                        <div className="control ml-2">
-                            <Button type="link" onClick={handleClickHistory.bind('','/signin')}>
-                                {fields.button ? fields.button.already_account : ''}
-                            </Button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div id="col" className="bg-white shadow">
-                dwqdqw
-            </div>
+                </div>
+                <div className="knd-x-form-field">
+                    <i className="fas fa-user-circle"></i>
+                    <input type="text" name="username" id="knd-form-username-field" className="knd-form-username-field" placeholder={fields.auth ? fields.auth.user.username : ''} value={state.username} onChange={onChange}/>
+                </div>
+                <div className="knd-x-form-field">
+                    <i className="fas fa-envelope"></i>
+                    <input type="email" name="email" id="email" className="knd-form-email-field" placeholder={fields.auth ? fields.auth.user.email : ''} onChange={onChange} value={state.email}/>
+                </div>
+                <div className="knd-x-form-field-va">
+                    <p>{fields.auth ? fields.auth.user.password_regex : ''}</p>
+                </div>
+                <div className="knd-x-form-field">
+                    <i className="fas fa-lock"></i>
+                    <input type="password" name="password" id="knd-form-password-field" className="knd-form-password-field" placeholder={fields.auth ? fields.auth.user.password : ''} value={state.password} onChange={onChange}/>
+                </div>
+                <div className="knd-x-form-field">
+                    <i className="fas fa-lock"></i>
+                    <input type="password" name="confirm_password" id="knd-form-confirm-password-field" className="knd-form-confirm-password-field" value={state.confirm_password} onChange={onChange} placeholder={fields.auth ? fields.auth.user.confirm_password : ''}/>
+                </div>
+                <div className="knd-x-form-field-button">
+                    <a onClick={handleClickHistory.bind('','/forgot')}>
+                        {fields.button ? fields.button.forgot : ''}
+                    </a>
+                </div>
+                <div className="knd-x-form-field-group">
+                    <button type="submit" disabled={state.loading}>
+                        {fields.button ? fields.button.register : ''}
+                    </button>
+                    <a onClick={handleClickHistory.bind('','/signin')}>
+                        {fields.button ? fields.button.already_account : ''}
+                    </a>
+                </div>
+            </form>
         </section>
     )
 }

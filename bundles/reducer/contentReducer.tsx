@@ -11,7 +11,8 @@ const initialState: ContentState = {
     openDialog: false,
     openDialogReport: false,
     loadingScreen: true,
-    openRetrieveDialog: false
+    openRetrieveDialog: false,
+    publicActive: false
 }
 
 export const contentReducer: Reducer<ContentState> = (state = initialState, action) => {
@@ -44,7 +45,8 @@ export const contentReducer: Reducer<ContentState> = (state = initialState, acti
         case ContentTypes.LOAD_CONTENT:
             return {
                 ...state,
-                content: action.payload.content
+                content: action.payload.content,
+                publicActive: action.payload.publicActive
             }
             break;
         case ContentTypes.FAILURE_CONTENT:
@@ -129,6 +131,13 @@ export const contentReducer: Reducer<ContentState> = (state = initialState, acti
                 openDialogReport: action.payload.openDialogReport,
                 detail: action.payload.detail,
                 activeReport: action.payload.activeReport
+            }
+            break
+        case ContentTypes.FETCH_PUBLIC:
+            return {
+                ...state,
+                content: action.payload.content,
+                publicActive: action.payload.publicActive
             }
             break
         default:

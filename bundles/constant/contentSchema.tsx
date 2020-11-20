@@ -16,7 +16,8 @@ export enum ContentTypes {
     LOAD_CONTENT = "LOAD_CONTENT",
     FAILURE_CONTENT = 'FAILURE_CONTENT',
     CLOSE_ALERT = "CLOSE_ALERT",
-    DIALOG_REPORT = "DIALOG_REPORT"
+    DIALOG_REPORT = "DIALOG_REPORT",
+    FETCH_PUBLIC = "FETCH_PUBLIC"
 }
 
 export interface ContentState {
@@ -26,6 +27,7 @@ export interface ContentState {
     readonly openDialogReport: boolean;
     readonly activeReport: boolean;
     readonly validate: boolean;
+    readonly publicActive: boolean;
     readonly softDetail: boolean
     readonly loadingScreen: boolean;
     readonly openRetrieveDialog: boolean;

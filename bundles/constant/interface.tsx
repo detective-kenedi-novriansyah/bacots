@@ -68,6 +68,7 @@ export interface Authenticate {
     update_at?: Moment;
     user?: User
     follow_default?: Follow
+    notification_default?: Notification;
     followers_count?: number;
     followed_count?: string;
 }
@@ -91,10 +92,18 @@ export interface Comment {
     bacot_default?: Content;
 }
 
+export interface Notifollow {
+    author?: Authenticate;
+    info_follow?: string;
+    create_at?: Moment;
+    update_at?: Moment;
+}
+
 export interface Composite {
     id?: number;
     likes?: Likes;
     comments?: Comment;
+    follow?: Notifollow;
     create_at?: Moment;
     update_at?: Moment;
 }
@@ -171,6 +180,9 @@ export interface Schema {
         follow?: string;
         followers?: string;
         followed?: string;
+        unfollow?: string;
+        notification?: string;
+        search?: string;
     }
     validate?: {
         validate_not_found?: string;
@@ -184,6 +196,22 @@ export interface Schema {
         unfollow?: string;
         title?: string;
         done_title?: string;
+    }
+    options?: {
+        privasi?: string;
+        provisions?: string;
+        ad?: string;
+        choice_ad?: string;
+        cookie?: string;
+        other?: string;
+        license?: string;
+        about?: string;
+        carrier?: string;
+        developer?: string;
+        help?: string;
+        options?: [{
+            name?: string;
+        }]
     }
 }
 

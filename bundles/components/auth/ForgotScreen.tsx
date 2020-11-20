@@ -36,47 +36,34 @@ const ForgotScreen: React.FunctionComponent = () => {
         history.push(newValue)
     }
     return (
-        <section id="dkwqmkdqw">
-            <div id="col-1" className="flex items-center justify-center">
-                <form onSubmit={onSubmit}>
-                    <div className="field">
-                        <div className="control">
-                            <h1 id="title">
-                                {fields.button ? fields.button.title_forgot : ''}
-                            </h1>
-                        </div>
+        <section className="knd-x-form-x">
+            <form onSubmit={onSubmit} className="knd-x-form-register">
+                <div className="knd-form-x-t">
+                    <div className="knd-form-x-title">
+                        {fields.button ? fields.button.title_forgot : ''}
                     </div>
-                    <div className="field">
-                        <div className="control">
-                            <div id="content-regex">
-                                <p className="font-sans text-sm">{fields.button ? fields.button.child_title_forgot : ''}</p>
-                            </div>
-                        </div>
+                    <div className="knd-form-x-child-title-forgot">
+                        {fields.button ? fields.button.child_title_forgot : ''}
                     </div>
-                    <div className="field">
-                        <div className="control is-expanded">
-                            <Input type="text" placeholder={fields.auth ? fields.auth.user.token : ''} name="username" id="username" autoComplete="off" value={state.token} onChange={onChange}/>
-                        </div>
-                    </div>
-                    <div className="field">
-                        <div className="control flex items-center justify-center">
-                            <Button type="dashed" htmlType="submit" loading={state.loading}>
-                                {fields.button ? fields.button.forgot_button : ''}
-                            </Button>
-                        </div>
-                    </div>
-                    <div className="field">
-                        <div className="control flex items-center justify-center">
-                            <Button type="link" onClick={handleClickHistory.bind('','/signin')}>
-                                {fields.button ? fields.button.already_account : ''}
-                            </Button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div id="col" className="bg-white shadow">
-                dwqdqw
-            </div>
+                </div>
+                <div className="knd-x-form-field">
+                    <i className="fas fa-user-circle"></i>
+                    <input type="text" name="token" id="knd-form-token-field" className="knd-form-token-field" placeholder={fields.auth ? fields.auth.user.token : ''} value={state.token} onChange={onChange}/>
+                </div>
+                <div className="knd-x-form-field-button">
+                    <a onClick={handleClickHistory.bind('','/signup')}>
+                        {fields.button ? fields.button.create_new_account : ''}
+                    </a>
+                </div>
+                <div className="knd-x-form-field-group">
+                    <button type="submit" disabled={state.loading}>
+                        {fields.button ? fields.button.submit : ''}
+                    </button>
+                    <a onClick={handleClickHistory.bind('','/signin')}>
+                        {fields.button ? fields.button.already_account : ''}
+                    </a>
+                </div>
+            </form>
         </section>
     )
 }

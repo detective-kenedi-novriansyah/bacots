@@ -32,13 +32,14 @@ export const DialogFollowContextApp = () => {
                 choiceFollow: choice
             }
         })
-      }
+    }
+    const size = window.innerWidth
     return <DialogFollowContext.Consumer>
         {
             ({open, handleClickClose}) => {
                 if(open.followed) {
                     return (
-                        <Dialog open={open.followed} onClose={handleClickClose}>
+                        <Dialog open={open.followed} onClose={handleClickClose} fullScreen={500 > size ? true : false}>
                             <DialogTitle>
                                 <div className="knd-dialog-follow">
                                     <div className="knd-dialog-follow-title">
@@ -68,7 +69,7 @@ export const DialogFollowContextApp = () => {
                     )
                 } else if(open.followers) {
                     return (
-                        <Dialog open={open.followers} onClose={handleClickClose}>
+                        <Dialog open={open.followers} onClose={handleClickClose} fullScreen={500 > size ? true : false}>
                             <DialogTitle>
                                 <div  className="knd-dialog-follow">
                                     <div className="knd-dialog-follow-title">

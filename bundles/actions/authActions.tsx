@@ -4,6 +4,24 @@ import { Dispatch } from 'redux'
 import { AuthTypes } from '../constant/authSchma'
 import { ChoiceFollow, FollowState } from '../constant/interface'
 
+let headers: any;
+if(localStorage.getItem('token')) {
+    headers = {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Headers': 'Content-Type, Origin, Accepted, Authorization, X-Requested-With',
+        'Access-Control-Allow-Methods': 'GET',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': `Token ${localStorage.getItem('token')}`
+    }
+} else {
+    headers = {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Headers': 'Content-Type, Origin, Accepted, X-Requested-With',
+        'Access-Control-Allow-Methods': 'GET',
+        'Access-Control-Allow-Origin': '*',
+    }
+}
+
 export const isAuthenticate = () => {
     return async (dispatch: Dispatch) => {
         const response = await axios.get('api/v1/auth/is_authenticate/', {
@@ -25,7 +43,6 @@ export const isAuthenticate = () => {
                 type: AuthTypes.IS_AUTHENTICATE,
                 payload: {
                     is_authenticate: res.data.authenticate,
-                    notification: res.data.notification
                 }
             })
         }).catch((err: any) => {
@@ -78,7 +95,8 @@ export const detailAuth = (newValue: string, history: History) => {
                 payload: {
                     data: res.data.authenticate,
                     content: res.data.content,
-                    is_active_follow: res.data.active
+                    is_active_follow: res.data.active,
+                    is_auth_active: res.data.is_auth_active
                 }
             })
             history.push({
@@ -97,6 +115,7 @@ export const detailAuth = (newValue: string, history: History) => {
                         }
                     }
                 })
+                history.push('/')
             }
         })
         return response
@@ -185,6 +204,8 @@ export const requestFollow = (data: FollowState) => {
                 type: AuthTypes.FOLLOW_AUTH,
                 payload: {
                     data: res.data.authenticate,
+                    is_active_follow: res.data.active,
+                    is_auth_active: res.data.is_auth_active,
                     validate: true,
                     message: {
                         message: res.data.message,
@@ -216,6 +237,131 @@ export const openDialogFollow = (choice: ChoiceFollow) => {
             type: AuthTypes.SHOW_FOLLOW,
             payload: {
                 choiceFollow: choice
+            }
+        })
+        return response
+    }
+}
+
+export const fetchAuth = (choiceMobile: boolean) => {
+    return async (dispatch: Dispatch) => {
+        const response = await axios.get('api/v1/auth/lists/auth/', {
+            headers,
+            timeout: 865000,
+            responseType: 'json',
+            withCredentials: false,
+            maxContentLength: 2000,
+            maxRedirects: 5,
+            validateStatus: (status: number) => status >= 200 && status < 300
+        }).then((res: AxiosResponse<any> ) => {
+            dispatch({
+                type: AuthTypes.FETCH_AUTH,
+                payload: {
+                    auth: res.data.results,
+                    openDrawerAuth: choiceMobile ? false : true,
+                    openDialogAuth: choiceMobile ? true : false,
+                    detail: {}
+                }
+            })
+            document.querySelector('body').style.overflow = "hidden"
+        }).catch((err: any) => {
+            if(err.response.data) {
+                dispatch({
+                    type: AuthTypes.FAILURE_AUTH,
+                    payload: {
+                        validate: true,
+                        message: {
+                            message: err.response.data.detail,
+                            validate: false
+                        }
+                    }
+                })
+            }
+        })
+        return response
+    }
+}
+
+export const filterAuth = (params: string) => {
+    return async (dispatch: Dispatch) => {
+        const response = await axios.get('api/v1/auth/lists/auth/', {
+            params: {
+                'user__first_name__icontains': params
+            },
+            headers,
+            timeout: 865000,
+            responseType: 'json',
+            withCredentials: false,
+            maxRedirects: 5,
+            maxContentLength: 2000,
+            validateStatus: (status: number) => status >= 200 && status < 300
+        }).then((res: AxiosResponse<any>) => {
+            dispatch({
+                type: AuthTypes.FILTER_AUTH,
+                payload: {
+                    auth: res.data.results,
+                }
+            })
+        }).catch((err: any) => {
+            if(err.response.data) {
+                dispatch({
+                    type: AuthTypes.FAILURE_AUTH,
+                    payload: {
+                        validate: true,
+                        message: {
+                            message: err.response.data.detail,
+                            validate: false
+                        }
+                    }
+                })
+            }
+        })
+        return response
+    }
+}
+
+export const detailFilterAuth = (newValue: string) => {
+    return async (dispatch: Dispatch) => {
+        let getValue: string;
+        if(newValue.split('~').length > 2) {
+            getValue = newValue.split('~')[1]
+        } else {
+            getValue = newValue.split('~')[0]
+        }
+        const response = await axios.get(`api/v1/auth/authenticate/detail/${getValue}/`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET',
+                'Access-Control-Allow-Headers': 'Content-Type, Origin, Accept, X-Requested-With, Authorization',
+                'Authorization': `Token ${localStorage.getItem('token')}`
+            },
+            timeout: 865000,
+            responseType: 'json',
+            withCredentials: false,
+            maxContentLength: 2000,
+            maxRedirects: 5,
+            validateStatus: (status: number) => status >= 200 && status < 300
+        }).then((res: AxiosResponse<any>) => {
+            dispatch({
+                type: AuthTypes.DETAIL_F_AUTH,
+                payload: {
+                    detail: res.data,
+                }
+            })
+        }).catch((err: any) => {
+            if(err.response.data) {
+                dispatch({
+                    type: AuthTypes.FAILURE_AUTH,
+                    payload: {
+                        validate: true,
+                        message: {
+                            message: err.response.data.detail,
+                            validate: false
+                        }
+                    }
+                })
+                history.push('/')
             }
         })
         return response

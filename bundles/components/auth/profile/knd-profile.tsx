@@ -12,6 +12,7 @@ const KndProfile: React.FunctionComponent = () => {
     const fields = useSelector((state: ApplicationState) => state.schema.schema)
     const is_authenticate = useSelector((state: ApplicationState) => state.auth.data)
     const is_active = useSelector((state: ApplicationState) => state.auth.is_active_follow)
+    const is_active_is_authenticate = useSelector((state: ApplicationState) => state.auth.is_auth_active)
     const content = useSelector((state: ApplicationState) => state.auth.content)
 
     const follow = fields.button ? fields.button.follow : ''
@@ -69,9 +70,16 @@ const KndProfile: React.FunctionComponent = () => {
                             </a>
                         </div>
                         <div className="knd-profile-follow-x">
-                            <button className="knd-profile-follow-btn" onClick={onClickFollower}>
-                                {is_active ? message : follow}
-                            </button>
+                            {is_active_is_authenticate ? 
+                            <div className="knd-profile-follow-x-group">
+                                <button className="knd-profile-follow-btn" onClick={onClickFollower}>
+                                    {is_active ? message : follow}
+                                </button>
+                                { is_active ? 
+                                <button className="knd-profile-follow-btn" onClick={onClickFollower}>
+                                    {fields.button ? fields.button.unfollow : ''}
+                                </button>  : null  }
+                            </div> : null }
                             <div className="knd-profil-follow">
                                 <div className="knd-profile-follow-group">
                                     <span>

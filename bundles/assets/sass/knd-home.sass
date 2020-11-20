@@ -12,8 +12,8 @@ $base-font-size-text: 14px
 $base-font-text: Roboto,arial,sans-serif
 $base-font-weight-text: 600
 $base-color: #7d686b
-$base-color-red: #f20c0c
-$box-shadow-btn: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149)
+$base-color-red: #f20c0c0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149)
+$box-shadow-btn: 
 $box-shadow-card: 0px 10px 1px #ddd, 0 10px 20px #ccc
 
 $base-color: #7d686b
@@ -33,14 +33,30 @@ $awesome-card-box: 0px 10px 1px #ddd, 0 10px 20px #ccc
 
 body
     overflow-x: hidden !important
+.knd-home-custom-rows
+    width: 80%
+    display: block
+    margin-left: auto
+    margin-right: auto
+    #knd-home-custom-rows
+        display: flex
+        justify-content: space-around
+        flex-direction: row
+        .knd-home-custom-col-xs
+            width: 100%
+            &:first-child
+                position: -webkit-sticky
+                position: sticky
+                top: 0.25rem
+                align-self: self-start
 
-@media only screen and ( max-width: 757px )
-    .row
+@media only screen and ( max-width: 767px )
+    #knd-home-custom-rows
         margin-left: 0 !important
         margin-right: 0 !important
         margin-bottom: 4rem
         padding: 0 !important
-    .row .col-xs
+    #knd-home-custom-rows .col-xs
         &:first-child
             display: none
         &:last-child
@@ -479,7 +495,7 @@ body
             margin-right: auto
     
 @media screen and ( max-width: 900px ) and ( min-width: 768px)
-    .row 
+    #knd-home-custom-rows 
         .col-xs
             &:first-child
                 position: sticky
@@ -635,3 +651,12 @@ body
                 position: -webkit-sticky
                 top: 0.15rem
                 align-self: flex-start
+
+@media screen and ( max-width: 1024px )
+    #knd-home-card-max-width
+        width: 100%
+    .knd-home-custom-rows
+        width: 95% !important
+        display: block
+        margin-left: auto
+        margin-right: auto

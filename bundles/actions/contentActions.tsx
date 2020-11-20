@@ -5,6 +5,24 @@ import { AuthTypes } from '../constant/authSchma'
 import { ContentTypes } from '../constant/contentSchema'
 import { CommentContent, Content, DestroyCommentDetail, LikesContent, RecordContent, RetrieveContent, Schema } from '../constant/interface'
 
+let headers: any;
+if(localStorage.getItem('token')) {
+    headers = {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Headers': 'Content-Type, Origin, Accepted, Authorization, X-Requested-With',
+        'Access-Control-Allow-Methods': 'GET',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': `Token ${localStorage.getItem('token')}`
+    }
+} else {
+    headers = {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Headers': 'Content-Type, Origin, Accepted, X-Requested-With',
+        'Access-Control-Allow-Methods': 'GET',
+        'Access-Control-Allow-Origin': '*',
+    }
+}
+
 export const recordContent = (data: RecordContent, setData: React.Dispatch<React.SetStateAction<RecordContent>>) => {
     return async (dispatch: Dispatch) => {
         const response = await axios.post('api/v1/bacot/', data, {
@@ -58,15 +76,10 @@ export const recordContent = (data: RecordContent, setData: React.Dispatch<React
     }
 }
 
-export const fetchContent = () => {
+export const fetchContent = (history: History) => {
     return async (dispatch: Dispatch) => {
         const response = await axios.get('api/v1/bacot/', {
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET',
-                'Access-Control-Allow-Headers': 'Content-Type, Origin, Accept, X-Requested-With'
-            },
+            headers,
             timeout: 865000,
             responseType: 'json',
             withCredentials: false,
@@ -77,9 +90,11 @@ export const fetchContent = () => {
             dispatch({
                 type: ContentTypes.LOAD_CONTENT,
                 payload: {
-                    content: res.data
+                    content: res.data,
+                    publicActive: false
                 }
             })
+            history.push('/')
         }).catch((err: any) => {
             if(err.response.data) {
                 dispatch({
@@ -582,6 +597,47 @@ export const openDialogReport = (content: Content, active: boolean) => {
                 openDialogReport: true,
                 detail: content,
                 activeReport: active
+            }
+        })
+        return response
+    }
+}
+
+export const fetchPublic = (history: History) => {
+    return async (dispatch: Dispatch) => {
+        const response = await axios.get('api/v1/bacot/public/content/', {
+            headers,
+            timeout: 865000,
+            responseType: 'json',
+            withCredentials: false,
+            maxContentLength: 2000,
+            maxRedirects: 5,
+            validateStatus: (status: number) => status >= 200 && status < 300
+        }).then((res: AxiosResponse<any>) => {
+            dispatch({
+                type: ContentTypes.FETCH_PUBLIC,
+                payload: {
+                    content: res.data.content,
+                    publicActive: res.data.activePublic
+                }
+            })
+            history.push('/public')
+        }).catch((err: any) => {
+            if(err.response.data) {
+                dispatch({
+                    type: ContentTypes.FAILURE_CONTENT,
+                    payload: {
+                        validate: true,
+                        message: {
+                            message: err.response.data.detail,
+                            validate: false
+                        }
+                    }
+                })
+                localStorage.clear()
+                setTimeout(() => {
+                    window.location.reload()
+                },400)
             }
         })
         return response

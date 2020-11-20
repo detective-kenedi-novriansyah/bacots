@@ -3,6 +3,8 @@ import { ClickAwayListener, Grow, Paper, Popper } from '@material-ui/core'
 import moment from 'moment'
 import _ from 'lodash'
 import { Notification } from '../../../constant/interface'
+import { useSelector } from 'react-redux'
+import { ApplicationState } from '../../../configureStore'
 
 interface NavbarNotificationProps {
     open: boolean
@@ -14,6 +16,7 @@ interface NavbarNotificationProps {
 }
 
 const NavbarNotification: React.FunctionComponent<NavbarNotificationProps> = (props: React.PropsWithChildren<NavbarNotificationProps>) => {
+    const fields = useSelector((state: ApplicationState) => state.schema.schema)
     const {open, setOpen, anchorRef, onClickDetailContent, onClickMoveProfile, is_info} = props
     
     const handleClose = (event: React.MouseEvent<EventTarget>) => {
@@ -45,12 +48,13 @@ const NavbarNotification: React.FunctionComponent<NavbarNotificationProps> = (pr
                     <div className="knd-navbar-dropdowns">
                         <div className="knd-navbar-dropdowns-header">
                             <i className="fas fa-bell"></i>
-                            Notification
+                            {fields.button ? fields.button.notification : ''}
                         </div>
                         <div className="knd-navbar-dropdown">
                             {_.map(is_info.info,((base, index) => {
                                 const is_authenticate_likes = base.likes ? base.likes.author.public_id : ''
                                 const is_authenticate_comments = base.comments ? base.comments.author.public_id : ''
+                                const is_authenticate_follow = base.follow ? base.follow.author.public_id : ''
                                 return (
                                     base.likes ? (
                                         <div className="knd-navbar-dropdown-x" key={index}>
@@ -67,6 +71,21 @@ const NavbarNotification: React.FunctionComponent<NavbarNotificationProps> = (pr
                                                 <p>{moment(base.likes.create_at).fromNow()}</p>
                                                 <div className="knd-push"></div>
                                                 <i className="fas fa-mitten"></i>
+                                            </div>
+                                        </div>
+                                    ) : base.follow ? (
+                                        <div className="knd-navbar-dropdown-x" key={index}>
+                                            <div className="knd-navbar-dropdown-x-header">
+                                                <img src={base.follow.author.avatar} alt="" className="knd-navbar-dropdown-x-avatar"/>
+                                                <a onClick={onClickMoveProfile.bind(base, is_authenticate_follow)} className="knd-navbar-dropdown-x-nickname">{base.follow.author ? base.follow.author.user.first_name : ''}</a>
+                                            </div>
+                                            <div className="knd-navbar-dropdown-x-content">
+                                                <p onClick={onClickDetailContent.bind(base, base.follow.author.public_id)}>{base.follow.info_follow}</p>
+                                            </div>
+                                            <div className="knd-navbar-dropdown-x-actions">
+                                                <p>{moment(base.follow.create_at).fromNow()}</p>
+                                                <div className="knd-push"></div>
+                                                <i className="fas fa-heart"></i>
                                             </div>
                                         </div>
                                     ) : (
